@@ -24,7 +24,7 @@ Region.init({
     }],
 });
 // création des associations entre les tables region et commune
-Region.hasMany(Commune, { foreignKey:'regionNom', sourceKey:'nom'});
-Commune.belongsTo(Region, { as: 'region', foreignKey:'regionNom', targetKey:'nom'});
+Region.hasMany(Commune);
+Commune.belongsTo(Region);
 //exportation du module
 module.exports = Region;

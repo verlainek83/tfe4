@@ -33,12 +33,12 @@ Adresse.init({
 // création des associations entre les tables Adresse et Parking, 
 // et entre les tables Adresse et User(nommée Utilisateur dans le diagramme de classe)
 //une Adresse a plusieurs parkings
-Adresse.hasMany(Parking, { foreignKey:'adresseId', constraints: false, });
+Adresse.hasMany(Parking);
 //un parking crrespond à une seule adresse 
-Parking.belongsTo(Adresse, { as:'adresse', foreignKey:'adresseId', constraints: false, });
+Parking.belongsTo(Adresse);
 //une adresse a plusieurs Users
-Adresse.hasMany(User, { foreignKey:'adresseId', constraints: false, });
+Adresse.hasMany(User);
 //un User correspond à une seule adresse 
-User.belongsTo(Adresse, { as:'adresse', foreignKey:'adresseId', constraints: false, });
+User.belongsTo(Adresse);
 // exportation du module
 module.exports = Adresse;

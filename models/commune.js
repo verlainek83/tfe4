@@ -32,8 +32,8 @@ Commune.init({
 });
 // création des associations entre les tables Adresse et Commune
 //une commune a plusieurs adresse
-Commune.hasMany(Adresse,{ foreignKey: 'fk_commune' });
+Commune.hasMany(Adresse);
 //une adresse correspond à une seule commune ,{ foreignKey: { name: 'fk_commune' }, as: 'CommuneAlias',},
-Adresse.belongsTo(Commune,{ foreignKey:'fk_commune' });
+Adresse.belongsTo(Commune);
 //exportation du module
 module.exports = Commune;
