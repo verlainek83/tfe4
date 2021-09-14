@@ -24,7 +24,9 @@ router.get("/", async (req, res, next) => {
     }
     //recherche de toutes les Locations en fonction du nom et du code postal
     const locations = await Location.findAll(
-        { order: ["date_Debut", "date_Fin", "heure_Debut", "heure_Fin"],});
+        { order: ["date_Debut", "date_Fin", "heure_Debut", "heure_Fin"],
+          include: [User, Place],
+        });
      //Affichage de toutes les locations
     res.render("locations", {
       title: "Liste des Locations",
@@ -56,9 +58,9 @@ router.get("/:id/details", async (req, res, next) => {
     const location = await Location.findByPk(locationId);
     const [users] = await Promise.all([ User.findAll()]);
     const [places] = await Promise.all([ Place.findAll()]);
-    const [vehicules] = await Promise.all([ Vehicule.findAll()]);
+    // const [vehicules] = await Promise.all([ Vehicule.findAll()]);
     //Affichage des détails de la location en tenant compte de la table adresse
-    res.render("location-details", { title: location.id, user, location, users, places, vehicules});
+    res.render("location-details", { title: location.id, user, location, users, places});
   } catch (error) {
     next(error);
   }

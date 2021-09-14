@@ -24,7 +24,7 @@ router.get("/", async (req, res, next) => {
     //recherche de toutes les Communes en fonction du nom et du code postal
     const communes = await Commune.findAll({ 
         order: ["nom", "codePostal"], 
-        include:["region"]
+        include:[Region]
               });
      //Affichage de toutes les adresses
     res.render("communes", {

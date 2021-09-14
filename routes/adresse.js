@@ -24,7 +24,7 @@ router.get("/", async (req, res, next) => {
     //recherche de toutes les Adresses en fonction du nom et du munero 
     const adresses = await Adresse.findAll({
                   order: ["nom", "numero"], 
-                  include:['commune']});
+                  include:[Commune]});
     //Affichage de toutes les adresses
     res.render("adresses", {
       title: "Liste des Adresses",
@@ -53,7 +53,7 @@ router.get("/:id/details", async (req, res, next) => {
     //récupraion de l'id de l'adresse
     const adresseId = req.params.id;
     //recherche de l'adresse en fonction de la clé primaire et en tenant compte de la comune
-    const adresse = await Adresse.findByPk(adresseId, {include: ['commune']});
+    const adresse = await Adresse.findByPk(adresseId, {include: [Commune]});
     const [communes] = await Promise.all([Commune.findAll()]);
     //Affichage des détails de l'adresse en tenant compte de la table adresse
     res.render("adresse-details", { title: adresse.nom, user, adresse, communes });
