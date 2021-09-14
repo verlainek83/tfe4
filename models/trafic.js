@@ -22,9 +22,11 @@ Trafic.init({
     //     primaryKey: true,
     //     fields: ["nom", "moment"],
     // }],
+    createdAt: false,
+    updatedAt: false,
 });
 // ,{ foreignKey: { name: 'fk_trafic' }},
-Trafic.hasMany(Tarif, { foreignKey:'traficId', constraints: false, });
-Tarif.belongsTo(Trafic, { as: 'trafic', foreignKey:'traficId', constraints: false, });
+Trafic.hasMany(Tarif);
+Tarif.belongsTo(Trafic);
 
 module.exports = Trafic;

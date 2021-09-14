@@ -26,6 +26,8 @@ PlageHoraire.init({
     //     primaryKey: true,
     //     fields: ["heureDebut", "heureFin"],
     // }],
+    createdAt: false,
+    updatedAt: false,
 });
 PlageHoraire.hasMany(Trafic, { foreignKey:'plageHoraireId', constraints: false, });
 Trafic.belongsTo(PlageHoraire, { as: 'plageH', foreignKey:'plageHoraireId', constraints: false, });

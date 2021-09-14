@@ -11,17 +11,19 @@ class Region extends Model {
 }
 // definition de l'instance du modèle Region
 Region.init({
-    idRegion: {type: DataTypes.INTEGER, unique: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, unique: true, autoIncrement: true},
     nom:{type:DataTypes.STRING, primaryKey:true, },
     managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "region",
-    indexes: [{
-        unique: true,
-        // primaryKey: true,
-        fields: ["nom"],
-    }],
+    // indexes: [{
+    //     unique: true,
+    //     // primaryKey: true,
+    //     fields: ["nom"],
+    // }],
+    createdAt: false,
+    updatedAt: false,
 });
 // création des associations entre les tables region et commune
 Region.hasMany(Commune);

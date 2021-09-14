@@ -29,6 +29,8 @@ Parking.init(
     //     fields: ["nombrePlaces"],
     //   },
     // ],
+    createdAt: false,
+    updatedAt: false,
   }
 );
 // création des associations entre les tables 
@@ -39,10 +41,10 @@ Parking.hasMany(Tarif);
 // // Tarif.belongsTo(Parking, { as: 'parkin', foreignKey:'parkingId', constraints: false, });
 Tarif.belongsTo(Parking);
 // //un parking a plusieurs places
-Parking.hasMany(Place, { foreignKey:'parkingId', constraints: false, });
+Parking.hasMany(Place);
 // Parking.hasMany(Place);
 // //une place appartient à un seul parking
-Place.belongsTo(Parking, { as: 'parking', foreignKey:'parkingId', constraints: false, });
+Place.belongsTo(Parking);
 // Place.belongsTo(Parking);
 
 // Tarif.hasMany(Parking);

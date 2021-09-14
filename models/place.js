@@ -30,19 +30,21 @@ Place.init({
     //     unique: true,
     //     fields: ["description"],
     // }],
+    createdAt: false,
+    updatedAt: false,
 });
 // création des associations entre les tables 
 //une place a plusieurs locations
-Place.hasMany(Location, { foreignKey:'placeId', constraints: false, });
+Place.hasMany(Location);
 //une location correspond à une seule place 
-Location.belongsTo(Place, { as: 'place', foreignKey:'placeId', constraints: false, });
+Location.belongsTo(Place);
 //une place a plusieurs réservations
-Place.hasMany(Reservation, { foreignKey:'placeId', constraints: false, });
+Place.hasMany(Reservation);
 //une réservation correspond à une seule place
-Reservation.belongsTo(Place, { as: 'place', foreignKey:'placeId', constraints: false, });
+Reservation.belongsTo(Place);
 //une place a plusieurs types de vehicule
-Place.belongsToMany(TypeVehicule, { through: "place_typeVehicules", foreignKey: 'placeId', otherKey: 'typeVehiculeId'});
+Place.belongsToMany(TypeVehicule, { through: "place_typeVehicules"});
 //un type de vehicule a plusieurs places
-TypeVehicule.belongsToMany(Place, { through: "place_typeVehicules", foreignKey: 'typeVehiculeId', otherKey: 'placeId'});
+TypeVehicule.belongsToMany(Place, { through: "place_typeVehicules"});
 //exportation du module
 module.exports = Place;

@@ -16,7 +16,10 @@ Permission.init(
       primaryKey: true,
     },
   },
-  { sequelize, modelName: "permission" }
+  { sequelize, modelName: "permission" ,
+  createdAt: false,
+    updatedAt: false,
+  }
 );
 
 class Role extends Model {get url() {
@@ -29,7 +32,9 @@ Role.init(
       primaryKey: true,
     },
   },
-  { sequelize, modelName: "role" }
+  { sequelize, modelName: "role" , 
+    createdAt: false,
+    updatedAt: false,}
 );
 
 Role.belongsToMany(Permission, { through: "role_permissions" });
@@ -63,22 +68,24 @@ User.init(
   //   unique: true,
   //   fields: ["username"],
   // }], 
+  createdAt: false,
+  updatedAt: false,
 }
 );
 
-User.belongsToMany(Role, { as: 'roles', through: 'user_roles', foreignKey: 'userUsername', otherKey: 'roleName'});
-Role.belongsToMany(User, { as: 'users', through: 'user_roles', foreignKey: 'roleName', otherKey: 'userUsername'});
+User.belongsToMany(Role, { through: 'user_roles'});
+Role.belongsToMany(User, { through: 'user_roles'});
 
-User.hasMany(Publication, { foreignKey:'userUsername'});
-Publication.belongsTo(User, { as: 'use', foreignKey:'userUsername'});
+User.hasMany(Publication);
+Publication.belongsTo(User);
 
-User.hasMany(Parking, { foreignKey:'userUsername', constraints: false,});
-Parking.belongsTo(User, { foreignKey:'userUsername', constraints: false,});
+User.hasMany(Parking);
+Parking.belongsTo(User);
 
-User.hasMany(Reservation, { foreignKey:'userUsername', constraints: false, });
-Reservation.belongsTo(User, { as: 'user', foreignKey:'userUsername', constraints: false, });
+User.hasMany(Reservation);
+Reservation.belongsTo(User);
 
-User.hasMany(Location, { foreignKey:'userUsername', constraints: false, });
-Location.belongsTo(User, { as: 'us', foreignKey:'userUsername', constraints: false, });
+User.hasMany(Location);
+Location.belongsTo(User);
 
 module.exports = { User, Role, Permission };

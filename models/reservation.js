@@ -35,5 +35,7 @@ Reservation.init({
     //     primaryKey: true,
     //     fields: ["codeReservation", "dateReservation"],
     // }, ],
+    createdAt: false,
+    updatedAt: false,
 });
 module.exports = Reservation;

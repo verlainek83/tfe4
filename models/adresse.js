@@ -29,6 +29,8 @@ Adresse.init({
     //     // primaryKey: true,
     //     fields: ["nom"],
     // }],
+    createdAt: false,
+    updatedAt: false,
 });
 // création des associations entre les tables Adresse et Parking, 
 // et entre les tables Adresse et User(nommée Utilisateur dans le diagramme de classe)

@@ -22,6 +22,8 @@ TypeVehicule.init({
     //     primaryKey: true,
     //     fields: ["nom"],
     // }],
+    createdAt: false,
+    updatedAt: false,
 });
 
 TypeVehicule.hasMany(Vehicule);

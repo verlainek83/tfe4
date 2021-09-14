@@ -26,6 +26,8 @@ Tarif.init({
     //     primaryKey: true,
     //     fields: ["montant"],
     // }],
+    createdAt: false,
+    updatedAt: false,
 });
 //un tarif appartient à un seul parking ,
 // Tarif.hasMany(Parking);

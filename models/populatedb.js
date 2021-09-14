@@ -448,22 +448,22 @@ console.log(
     ]);
     //  remplissage de la table adresse
     await Adresse.bulkCreate([
-      { nom: "rue de la victoire", numero: 200, communeIdCommune:9},
-      { nom: "impasse de picardie", numero: 3, communeIdCommune:3},
-      { nom: "Rue de l'Abattoir", numero: 200, communeIdCommune:1},
-      { nom: "Rue Brederode", numero: 16, communeIdCommune:19},
-      { nom: "Rue Haute", numero: 298, communeIdCommune:52},
-      { nom: "Rue Royale", numero: 120, communeIdCommune:32},
-      { nom: "Rue du Lombard ", numero: 69, communeIdCommune:10},
-      { nom: "Rue Royale", numero: 76, communeIdCommune:17},
-      { nom: "rue Jospeh Schmidt", numero: 34, communeIdCommune:51},
-      { nom: "rue félix martin", numero: 10, communeIdCommune:41},
-      { nom: "Rue Victor Gilmet", numero: 12, communeIdCommune:16},
-      { nom: "Rue des Sarpettes", numero: 11, communeIdCommune:11},
-      { nom: "Chemin du fond des coupes", numero: 23, communeIdCommune:21},
-      { nom: "Leurshoek", numero: 96, communeIdCommune:31},
-      { nom: "Leurshoek", numero: 67, communeIdCommune:32},
-      { nom: "Schaarbeekstraat", numero: 23, communeIdCommune:66},
+      { nom: "rue de la victoire", numero: 200, communeId:9},
+      { nom: "impasse de picardie", numero: 3, communeId:3},
+      { nom: "Rue de l'Abattoir", numero: 200, communeId:1},
+      { nom: "Rue Brederode", numero: 16, communeId:19},
+      { nom: "Rue Haute", numero: 298, communeId:52},
+      { nom: "Rue Royale", numero: 120, communeId:32},
+      { nom: "Rue du Lombard ", numero: 69, communeId:10},
+      { nom: "Rue Royale", numero: 76, communeId:17},
+      { nom: "rue Jospeh Schmidt", numero: 34, communeId:51},
+      { nom: "rue félix martin", numero: 10, communeId:41},
+      { nom: "Rue Victor Gilmet", numero: 12, communeId:16},
+      { nom: "Rue des Sarpettes", numero: 11, communeId:11},
+      { nom: "Chemin du fond des coupes", numero: 23, communeId:21},
+      { nom: "Leurshoek", numero: 96, communeId:31},
+      { nom: "Leurshoek", numero: 67, communeId:32},
+      { nom: "Schaarbeekstraat", numero: 23, communeId:66},
     ]);
   //création des mots de passe
     const verlyPasswordHash = await bcrypt.hash("kouwe", saltRounds);
@@ -699,19 +699,19 @@ console.log(
       userUsername:"verly",
     },
     { description: ["Bonjour, je mets à votre disposition ma place un parking privé" ],
-    userUsername:"elodie",
+      userUsername:"elodie",
     },
     { description: ["Bonjour, je mets à votre disposition ma place dans box de garage" +
     ", avec camera de surveillance 24h/24" ],
-    userUsername:"andre",
+      userUsername:"andre",
     },
     { description: ["Bonjour, je mets à votre disposition plusieurs places dans" +
     "dans le parking de mon immeuble" ],
-    userUsername:"arthur",
+      userUsername:"arthur",
     },
     { description: ["Bonjour, je mets à votre disposition ma place qui est située dans" +
     " le centre de la ville" ],
-    userUsername:"olga",
+      userUsername:"olga",
     },
   ]);
   //remplissage de la table parking
@@ -904,8 +904,8 @@ const [a, b, c, d, e, f, g, h, i, j, k, l] = await Place.bulkCreate([
     { heureDebut: '09:02', heureFin: '10:03'},
    ]);
   await Trafic.bulkCreate([
-    {nom: "haut"},
-    {nom: "bas"},
+    {nom: "haut", plageHoraireId:1},
+    {nom: "bas", plageHoraireId:1},
   ]);
   //remplissage de la table tarif
   await Tarif.bulkCreate([

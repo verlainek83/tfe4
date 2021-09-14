@@ -27,15 +27,17 @@ Vehicule.init({
     //     primaryKey: true,
     //     fields: ["numero_immatriculation"],
     // }],
+    createdAt: false,
+    updatedAt: false,
 });
 // création des associations entre les tables 
 //un vehicule a plusieurs locations
-Vehicule.hasMany(Location, { foreignKey:'vehiculeId', constraints: false, });
-//une location correspond à un seul vehicule 
-Location.belongsTo(Vehicule, { as: 'vehicule', foreignKey:'vehiculeId', constraints: false, });
+// Vehicule.hasMany(Location);
+// //une location correspond à un seul vehicule 
+// Location.belongsTo(Vehicule);
 //un vehicule a plusieurs reservations
-Vehicule.hasMany(Reservation, { foreignKey:'vehiculeId', constraints: false, });
+Vehicule.hasMany(Reservation);
 //une reservation correspond à un seul vehicule
-Reservation.belongsTo(Vehicule, { as: 'vehicule', foreignKey:'vehiculeId', constraints: false, });
+Reservation.belongsTo(Vehicule);
 //exportation du module
 module.exports = Vehicule;

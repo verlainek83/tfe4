@@ -17,7 +17,6 @@ Commune.init({
     nom:{type:DataTypes.STRING, allowNull: false },
     //création du code postal comme étant un int non null
     codePostal:{ type:DataTypes.INTEGER(4), allowNull:false },
-    id_Adresse: DataTypes.INTEGER,
     // id_Adresse: DataTypes.INTEGER,
     managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
@@ -29,6 +28,8 @@ Commune.init({
     //     primaryKey: true,
     //     fields: ["nom"],
     // }],
+    createdAt: false,
+    updatedAt: false,
 });
 // création des associations entre les tables Adresse et Commune
 //une commune a plusieurs adresse
