@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  form(action="/locations/create", method="post")
+    .mb-3
+      label(for="date_DebutInput") Date de début:
+        input#date_Debut(type='date', name='date_Debut', value='2021-01-02', min='2021-01-01', max='2050-12-31')
+    .mb-3
+      label(for="date_FinInput") Date de Fin:
+        input#date_Fin(type='date', name='date_Fin', value='2021-01-02', min='2021-01-01', max='2050-12-31')
+    .mb-3
+      label(for="heure_FinInput") Heure de Fin:
+        input#heure_Fin(type='time', name='heure_Fin', value='09:00', min='00:00', max='23:59')
+    .mb-3
+      button.btn.btn-primary(type="submit") Save
+      | &nbsp;
+      a.btn.btn-outline-danger(href="/ligneFactures") Cancel

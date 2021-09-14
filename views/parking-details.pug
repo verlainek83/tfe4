@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 PARKING
+  p Adresse: #{parking.adresse.nom}
+  p Nombre de places dans le parking: #{parking.nombrePlaces}
+  p Propriétaire du parking: #{parking.userUsername}
+  
+  a.nav-link(href="/reservations" class={active: currentUrl === "/reservations"}) 
+    button.btn.btn-outline-success(type='button') Faire une réservation?

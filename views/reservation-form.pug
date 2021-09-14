@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  h1= nombrePlaces
+  i.fa.fa-info-circle(aria-hidden='true')
+  |  Bienvenue !
+  p Enregistrez votre réservation.
+  p La réseration de parking zéro contraintes ! 😍
+
+  form#form(action="/reservations/create" method="post")
+    .mb-3
+      label.form-label(for="nombrePlacesInput") Nombre de Places:
+      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+    .mb-3
+      label.form-label(for="nombrePlacesInput") Nombre de Places:
+      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+    .mb-3
+      label.form-label(for="nombrePlacesInput") Nombre de Places:
+      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+    .mb-3
+      label.form-label(for="nombrePlacesInput") Nombre de Places:
+      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+    .mb-3
+      label.form-label(for="nombrePlacesInput") Nombre de Places:
+      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+    .mb-3
+      label.form-label(for="nombrePlacesInput") Nombre de Places:
+      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+    .mb-3
+      label.form-label(for="validationReservationInput") validationReservation:
+      input#validationReservationInput.form-control(type="number", name="validationReservation")
+    .mb-3
+      label.form-label(for="coutTotalReservationInput") coutTotalReservation:
+      input#coutTotalReservationInput.form-control(type="number", name="coutTotalReservation")
+    .mb-3
+      label.form-label(for="numero_immatriculationInput") Numero d'immatriculation du véhicule:
+      input#numero_immatriculationInput.form-control(type="number", name="numero_immatriculation")
+    .mb-3
+      button.btn.btn-primary(type="submit") Save
+      | &nbsp;
+      a.btn.btn-outline-danger(href="/parkings/create") Cancel

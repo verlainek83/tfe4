@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= nombrePlaces
+  i.fa.fa-info-circle(aria-hidden='true')
+  |  Bienvenue !
+  p Enregistrez votre parking sur Placetopark.
+  p La location de parking zéro contraintes ! 😍
+
+  form#form(action="/parkings/create" method="post")
+    .mb-3
+      label.form-label(for="nombrePlacesInput") Nombre de Places:
+      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+    .mb-3
+      label.form-label(for="adresseIdAdresseSelect") Commune
+      select#adresseIdAdresseSelect(name="adresseIdAdresse")
+        each adresse in adresses
+          option(value=adresse.idAdresse) #{adresse.idAdresse}, #{adresse.nom} , #{adresse.numero}
+    .mb-3
+      //- label.form-label(for="userUsernameInput") Nom de l'utilisateur
+      //- select#userUsernameInput(name="userUsername" value=user.username)
+        //- each u in users
+          option(value=u.username) #{u.username}
+      label.form-label(for="userUsernameInput") Nom de l'utilisateur
+      input#userUsernameInput.form-control(type="text", name="userUsername", value=user.username)
+    .mb-3
+      button.btn.btn-primary(type="submit") Save
+      | &nbsp;
+      a.btn.btn-outline-danger(href="/parkings/create") Cancel

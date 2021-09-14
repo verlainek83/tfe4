@@ -1,0 +1,21 @@
+extends layout 
+
+block content 
+
+  h1= name
+  form(action="/communes/create", method="post")
+    .mb-3
+      label.form-label(for="nomInput") Nom
+      input#nomInput.form-control(type="text", name="nom" required)
+    .mb-3
+      label.form-label(for="codePostalInput") Code postal
+      input#codePostalInput.form-control(type="number", name="codePostal" min="1000" max="9999" required)
+    .mb-3
+      label.form-label(for="regionNomSelect") Region
+      select#regionNomSelect(name="regionNom")
+        each region in regions
+          option(value=region.idRegion) #{region.nom}
+    .mb-3
+      button.btn.btn-primary(type="submit") Save
+      | &nbsp;
+      a.btn.btn-outline-danger(href="/communes/create") Cancel

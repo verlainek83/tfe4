@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  h1= title
+  if passwordMismatch
+    .alert.alert-warning.alert-dismissible.fade.show Les deux mots de passe ne sont pas identiques.
+      button(type="button" class="btn-close" data-dismiss="alert" aria-label="Close")
+
+  if compteCree
+    .alert.alert-primary.alert-dismissible.fade.show Compte créé avec succès.
+      button(type="button" class="btn-close" data-dismiss="alert" aria-label="Close")
+
+  form(action="/signup", method="post")
+    .mb-3
+      label.form-label(for="usernameInput") Username:
+      input#usernameInput.form-control(name="username", type="text", autofocus)
+    .mb-3
+      label.form-label(for="nomInput") Nom:
+      input#nomInput.form-control(name="nom", type="text", autofocus) 
+    .mb-3
+      label.form-label(for="prenomInput") Prenom:
+      input#prenomInput.form-control(name="prenom", type="text", autofocus)
+    .mb-3
+      label.form-label(for="adresseInput") Adresse:
+      input#adresseInput.form-control(name="adresse", type="text", autofocus) 
+    .mb-3
+      label.form-label(for="telephoneInput") Telephone:
+      input#telephoneInput.form-control(name="telephone", type="text", autofocus) 
+    .mb-3
+      label.form-label(for="usermailInput") Email:
+      input#usermailInput.form-control(name="usermail", type="email", autofocus)
+    .mb-3
+      label.form-label(for="passwordInput") Password:
+      input#passwordInput.form-control(name="password", type="password")
+    .mb-3
+      label.form-label(for="passwordInput") Confirmer Password:
+      input#passwordInput.form-control(name="password2", type="password")
+    .mb-3
+      button.btn.btn-primary(type="submit") Créer

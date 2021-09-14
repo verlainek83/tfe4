@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= nombrePlaces
+  i.fa.fa-info-circle(aria-hidden='true')
+  |  Bienvenue !
+  p Enregistrez votre parking sur Placetopark.
+  p La location de parking zéro contraintes ! 😍
+
+  form#form(action="/adresses/create" method="post")
+    .mb-3
+      label.form-label(for="nomInput") Entrez le nom de la rue:
+      input#nomInput.form-control(type="text", name="nom")
+    .mb-3
+      label.form-label(for="numeroInput") Entrez le numéro de la rue:
+      input#nuImeronput.form-control(type="number", name="numero")
+    .mb-3
+      label.form-label(for="communeIdCommuneSelect") Commune
+      select#communeIdCommuneSelect(name="communeIdCommune")
+        each commune in communes
+          option(value=commune.idCommune) #{commune.idCommune}, #{commune.nom} , #{commune.codePostal}
+    .mb-3
+      button.btn.btn-primary(type="submit") Save
+      | &nbsp;
+      a.btn.btn-outline-danger(href="/adresses") Cancel

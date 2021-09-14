@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  if user
+    p Bonjour, 
+      b #{user.username}, 
+      i Cela fait plaisir de te revoir!
+    p Bienvenue sur Placetopark
+    h1 Tes informations
+    table.table
+      thead
+        tr
+          th(scope="col") Nom
+          th(scope="col") Prénom
+          th(scope="col") Telephone
+          th(scope="col") Adresse mail
+      tbody
+        tr
+          td= user.nom
+          td= user.prenom
+          td= user.telephone
+          td= user.usermail
+  else
+    p Please log in...

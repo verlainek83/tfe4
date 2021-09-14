@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 Adresse
+
+  p 
+    i Nom: 
+      b #{adresse.nom}
+  p 
+    i Numéro: 
+      b #{adresse.numero}
+  p Commune: #{adresse.commune.nom}
+    
+  a.nav-link(href="/adresses" class={active: currentUrl === "/adresses"}) 
+    button.btn.btn-outline-success(type='button') Faire une location?

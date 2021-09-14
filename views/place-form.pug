@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1 place
+  form(action="/places/create" method="post")
+    //- .mb-3
+    //-   label.form-label(for="parkingIdInput") Parking
+    //-   input#parkingIdInput.form-control(type="number", name="parkingId" value=parking.id)
+    //- .mb-3
+    //-   label.form-label(for="typeVehiculeParkerInput") Type de Vehicule à parker
+    //-   input#typeVehiculeParkerInput.form-control(type="text", name="typeVehiculeParker", value=place.typeVehiculeParker)
+    .mb-3
+      label.form-label(for="descriptionInput") Description
+      input#descriptionInput.form-control(type="text", name="description")
+    .mb-3
+      label.form-label(for="dimensionInput") dimension
+      input#dimensionInput.form-control(type="text", name="dimension")
+    .mb-3
+      button.btn.btn-primary(type="submit") Save
+      | &nbsp;
+      a.btn.btn-outline-danger(href="/places") Cancel
+

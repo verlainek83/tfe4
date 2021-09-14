@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= nomMachine
+  form(action="/ligneFactures/create", method="post")
+    .mb-3
+      label.form-label(for="nomMachSelect") Machine
+      select#nomMachSelect(name="id_machine")
+        each machine in machines
+          option(value=machine.id) #{machine.name}
+    .mb-3
+      label.form-label(for="nombreMinuteSelect") Nombre de minutes
+      select#nombreMinuteSelect(name="id_utilisation")
+        each utilisation in utilisations
+          option(value=utilisation.id) #{utilisation.duree}
+    .mb-3
+      label.form-label(for="sousTotalInput") Sous-total
+      input#sousTotalInput.form-control(type="number", name="sousTotal")
+    .mb-3
+      button.btn.btn-primary(type="submit") Save
+      | &nbsp;
+      a.btn.btn-outline-danger(href="/ligneFactures") Cancel
