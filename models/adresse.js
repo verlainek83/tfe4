@@ -19,7 +19,7 @@ Adresse.init({
     nom:{type:DataTypes.STRING },
     //création du numero comme étant un int non null
     numero:{type:DataTypes.INTEGER(4)},
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "adresse",

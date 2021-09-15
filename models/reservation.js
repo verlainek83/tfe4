@@ -25,7 +25,7 @@ Reservation.init({
         defaultValue: '10:00', allowNull: false
     },
     validationReservation: { type:DataTypes.BOOLEAN, defaultValue: false, allowNull: false },
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "reservation",

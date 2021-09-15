@@ -13,7 +13,7 @@ class TypeVehicule extends Model {
 TypeVehicule.init({
     id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true, unique: true,},
     nom:{type:DataTypes.STRING, allowNull: false },
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "typeVehicule",

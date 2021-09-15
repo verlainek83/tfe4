@@ -23,7 +23,7 @@ Location.init({
     //création de l'heure de fin comme étant de type time non null
     heure_Fin:{type:DataTypes.TIME, defaultValue: '10:00', allowNull: false},
     validationLocation: { type:DataTypes.BOOLEAN, defaultValue: false, allowNull: false },
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "location",

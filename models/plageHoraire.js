@@ -17,7 +17,7 @@ PlageHoraire.init({
     //création de la date de début comme étant de type Date non null
     heureDebut:{type:DataTypes.TIME, allowNull: false },
     heureFin:{type:DataTypes.TIME, allowNull: false },
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "plageHoraire",

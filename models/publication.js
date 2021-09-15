@@ -14,7 +14,7 @@ Publication.init({
     // Definition des attributs 
     id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true, unique: true,}, 
     description:{type:DataTypes.STRING, allowNull: false },
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "publication",

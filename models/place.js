@@ -21,7 +21,7 @@ Place.init({
     //création de l'attribut dimension comme étant un string non null
     dimension: { type:DataTypes.STRING, allowNull: false },
     // photo:DataTypes.BLOB,
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "place",

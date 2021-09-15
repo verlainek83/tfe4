@@ -13,7 +13,7 @@ class Region extends Model {
 Region.init({
     id: {type: DataTypes.INTEGER, unique: true, autoIncrement: true},
     nom:{type:DataTypes.STRING, primaryKey:true, },
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "region",

@@ -16,7 +16,7 @@ Parking.init(
     //création du nombre de places comme étant un int non null
     id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true, unique: true,},
     nombrePlaces: { type:DataTypes.INTEGER },
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
   },
   {
     sequelize,

@@ -13,7 +13,7 @@ Trafic.init({
     id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true, unique: true,},
     nom:{type:DataTypes.STRING, allowNull: false },
     // moment:{type:DataTypes.STRING, allowfalse:false},
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "trafic",

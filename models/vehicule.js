@@ -17,7 +17,7 @@ Vehicule.init({
     id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true, unique: true,}, 
     //création du numero de matricule de la voiture comme etant un string non null
     numero_immatriculation:{type:DataTypes.STRING, allowNull: false },
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "vehicule",

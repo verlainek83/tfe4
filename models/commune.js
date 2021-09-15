@@ -18,7 +18,7 @@ Commune.init({
     //création du code postal comme étant un int non null
     codePostal:{ type:DataTypes.INTEGER(4), allowNull:false },
     // id_Adresse: DataTypes.INTEGER,
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "commune",

@@ -16,7 +16,7 @@ Tarif.init({
     id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true, unique: true,},
     //création du montant comme étant un float non null
     montant:{type:DataTypes.FLOAT(5,2), allowNull: false },
-    managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
+    // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,
     modelName: "tarif",

@@ -11,6 +11,7 @@ class Permission extends Model {get url() {
 }
 Permission.init(
   {
+    id: { type: DataTypes.INTEGER, autoIncrement:true, unique: true,},
     name: {
       type: DataTypes.STRING,
       primaryKey: true,
@@ -27,6 +28,7 @@ class Role extends Model {get url() {
 }
 Role.init(
   {
+    id: { type: DataTypes.INTEGER, autoIncrement:true, unique: true,},
     name: {
       type: DataTypes.STRING,
       primaryKey: true,
@@ -55,7 +57,7 @@ class User extends Model {
 }
 
 User.init(
-  { id_user: { type: DataTypes.INTEGER, autoIncrement:true, unique: true,},
+  { id: { type: DataTypes.INTEGER, autoIncrement:true, unique: true,},
     username: { type: DataTypes.STRING, primaryKey: true,},
     passwordHash: DataTypes.STRING,
     usermail: DataTypes.STRING,
