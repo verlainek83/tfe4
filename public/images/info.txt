@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Fondamento-Regular
+font link: https://fonts.google.com/specimen/Fondamento
+font author: Astigmatic
+font author site: http://www.astigmatic.com/
+Slogan Font: KaushanScript-Regular.ttf
+
+icon designer: Pavel N.
+icon designer link: /pavel.nikandrov
+        
+{"bg-gradient-0":"#4B279B","bg-gradient-1":"#DF99D8","icon":"#ffffff","font":"#ffffff","slogan":"#ffffff"}
+      
