@@ -1,264 +1,51 @@
 doctype html
-html
-  head
-    title= title
+head
+    title #{title}
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    //- title PlaceToPark
-    link(rel="stylesheet", href="stylesheets/style.css")
+    title PlaceToPark
+    link(rel='stylesheet' href='stylesheets/style.css')
+    link(rel='stylesheet' href='stylesheets/style1.css')
     link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-    script(src='https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js')
-    //- ancien code head
-    //- link(rel="stylesheet", href="../stylesheets/style.css")
-    link(
-      rel="stylesheet",
-      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css",
-      integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK",
-      crossorigin="anonymous")
-    script(
-      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js",
-      integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD",
-      crossorigin="anonymous")
-    
-  body
-    //- header
-    //-   nav.navbar.navbar-expand-sm.navbar-success.bg-light.shadow
-    //-     // Brand/logo
-    //-     a.navbar-brand(href="/" class={active: currentUrl === "/"})
-    //-       img(src='./images/logo.png' alt='Logo' style='width:70px;')
-    //-     .container
-    //-       ul.navbar-nav        
-    //-       ul.nav.navbar-nav.navbar-right
-    //-         if user
-    //-           li.nav-item
-    //-             a.nav-link(href="/locations" class={active: currentUrl === "/locations"})
-    //-               button.btn.btn-outline-success(type='button') Faire une location 
-    //-           li.nav-item
-    //-             a.nav-link(href="/places" class={active: currentUrl === "/places"})
-    //-               button.btn.btn-outline-success(type='button') Proposer une place
-    //-           li.nav-item
-    //-             a.nav-link(href="/parkings" class={active: currentUrl === "/parkings"})
-    //-               button.btn.btn-outline-success(type='button') Rechercher un parking
-    //-           li.nav-item
-    //-             a.nav-link(href="/adresses/create" class={active: currentUrl === "/adresses/create/new"}) 
-    //-               button.btn.btn-outline-success(type='button') Proposer un parking 
-    //-           // Dropdown
-    //-           li.nav-item.dropdown
-    //-             a#navbardrop.nav-link.dropdown-toggle(href='#' data-toggle='dropdown')
-    //-               | #{user.username}!
-    //-             .dropdown-menu
-    //-               a.dropdown-item(href="/account" class={active: currentUrl === "/account"}) Mon compte
-    //-               a.nav-link(href="/mesParkings" class={active: currentUrl === "/mesParkings"}) mes parkings
-    //-               a.nav-link(href="/reservations" class={active: currentUrl === "/reservations"}) mes reservations
-    //-               a.nav-link(href="/dashboard") Dashboard
-    //-               a.nav-link(href="/logout") Logout 
-    //-         if !user 
-    //-           li.nav-item
-    //-               a.nav-link(href="/login" class={active: currentUrl === "/login"})
-    //-                 button.btn.btn-outline-success(type='button') Se connecter
-    //-         //- li.nav-item
-    //-         //-     a.nav-link(href="/signup" class={active: currentUrl === "/signup"})
-    //-         //-       button.btn.btn-outline-success(type='button') Créer un compte
-    if !user
-      section#banner
-        img.logo(src='images/default-monochrome.svg' alt='placetopark')
-        .banner-text
-          h1 PlaceToPark
-          p Partager votre parking et gagner de l&apos;argent
-          .banner-btn
-            a(href='#')
-              span
-              | Find Out
-            a(href='#')
-              span
-              | Read More
-      #sideNav
-        nav
-          ul
-            li
-              a(href='#banner') ACCUEIL
-            li
-              a(href='#feature') FONCTIONNALITES
-            li
-              a(href='#service') SERVICES
-            li
-              a(href='#testimonial') PUBLICATIONS
-            li
-              a(href='#footer') CONTACT
-            li
-              a(href="/login") CONNEXION
-            li
-              a(href='#footer') CREATION DE COMPTE
-      #menuBtn
-        img#menu(src='images/menu1.png' alt='menu')
-      // -FONCTIONNALITES/features
-      section#feature
-        .title-text
-          p FONCTIONNALITES
-          h1 Pourquoi nous choisir
-        .feature-box
-          .features
-            h1 Parking garanti
-            .features-desc
-              .feature-icon
-                i.fa.fa-shield
-              .feature-text
-                p
-                  | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  | Ut eius ipsum deleniti illum sunt soluta, exercitationem
-                  | quia porro vel distinctio, non cum quibusdam dolore quas facere,
-                  | commodi sapiente aliquam! Quis.
-            h1 Reservation en ligne
-            .features-desc
-              .feature-icon
-                i.fa.fa-check-square-o
-              .feature-text
-                p
-                  | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  | Ut eius ipsum deleniti illum sunt soluta, exercitationem
-                  | quia porro vel distinctio, non cum quibusdam dolore quas facere,
-                  | commodi sapiente aliquam! Quis.
-            h1 Prix abordable
-            .features-desc
-              .feature-icon
-                i.fa.fa-euro
-              .feature-text
-                p
-                  | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  | Ut eius ipsum deleniti illum sunt soluta, exercitationem
-                  | quia porro vel distinctio, non cum quibusdam dolore quas facere,
-                  | commodi sapiente aliquam! Quis.
-          .features-img
-            img(src='images/images (8).jpg' alt='')
-      // -Services
-      section#service
-        .title-text
-          p SERVICES
-          h1 Nous offrons mieux
-        .service-box
-          .single-service
-            img(src='images/images (2).jpg' alt='')
-            .overlay
-            .service-desc
-              h3 Parking &agrave; Louer
-              hr
-              p Lorem ipsum dolor sit amet.
-          .single-service
-            img(src='images/images (3).jpg' alt='')
-            .overlay
-            .service-desc
-              h3 Parking &agrave; Louer
-              hr
-              p Lorem ipsum dolor sit amet.
-          .single-service
-            img(src='images/images (4).jpg' alt='')
-            .overlay
-            .service-desc
-              h3 Parking &agrave; Louer
-              hr
-              p Lorem ipsum dolor sit amet.
-          .single-service
-            img(src='images/images (9).jpg' alt='')
-            .overlay
-            .service-desc
-              h3 Parking &agrave; Louer
-              hr
-              p Lorem ipsum dolor sit amet.
-      // publications
-      section#testimonial
-        .title-text
-          p PUBLICATIONS
-          h1 Proposition de parkings
-        .testimonial-row
-          .testimonial-col
-            .user
-              img(src='images/images (4).jpg' alt='')
-              .user-info
-                h4
-                  | ANNETTE KOUMWEI 
-                  i.fa.fa-twitter
-                small @annettek
-            p
-              | Lorem ipsum dolor sit amet,
-              | consectetur adipisicing elit. Maxime, vel.
-          .testimonial-col
-            .user
-              img(src='images/images (4).jpg' alt='')
-              .user-info
-                h4
-                  | ROMUALD MOMBEL 
-                  i.fa.fa-twitter
-                small @romualdm
-            p
-              | Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              | Consectetur laborum perspiciatis assumenda totam voluptatem impedit.
-          .testimonial-col
-            .user
-              img(src='images/images (4).jpg' alt='')
-              .user-info
-                h4
-                  | VERLAINE KOUWE 
-                  i.fa.fa-twitter
-                small @verlainek
-            p
-              | Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              | Ipsam, odio?
-      // footer
-      section#footer
+
+    block scripts
+      script(src='https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js')
+
+body
+    block content
+        
+
+    block foot
+        // -FOOTER
+        section#footer
         img.footer-img(src='images/images (6).jpg' alt='')
         .title-text
-          p CONTACT
-          h1 Visiter le Site Web Aujourd&apos;hui
+            p CONTACT
+            h1 Visiter le Site Web Aujourd&apos;hui
         .footer-row
-          .footer-left
+            .footer-left
             h1 Horaires
             p
-              i.fa.fa-clock-o
-              |  Lundi &agrave; Vendredi: 9H00 &agrave; 18H00
+                i.fa.fa-clock-o
+                |  Lundi &agrave; Vendredi: 9H00 &agrave; 18H00
             p
-              i.fa.fa-clock-o
-              |  Samedi et Dimanche: 12H00 &agrave; 16H00
-          .footer-right
+                i.fa.fa-clock-o
+                |  Samedi et Dimanche: 12H00 &agrave; 16H00
+            .footer-right
             h1 Contactez Nous
             p
-              | impasse de picardie 3, 1348 louvain-la-neuve 
-              i.fa.fa-map-marker
+                | impasse de picardie 3, 1348 louvain-la-neuve 
+                i.fa.fa-map-marker
             p
-              | verly@yopmail.com 
-              i.fa.fa-paper-plane
+                | verly@yopmail.com 
+                i.fa.fa-paper-plane
             p
-              | +32 465 82 98 74 
-              i.fa.fa-phone
+                | +32 465 82 98 74 
+                i.fa.fa-phone
         .social-links
-          i.fa.fa-facebook
-          i.fa.fa-instagram
-          i.fa.fa-twitter
-          i.fa.fa-youtube-play
-          p Copyright KOUWE Verlaine
-      script.
-        var menuBtn = document.getElementById("menuBtn")
-        var sideNav = document.getElementById("sideNav")
-        var menu = document.getElementById("menu")
-        sideNav.style.right = "-250px";
-        menuBtn.onclick = function(){
-        if (sideNav.style.right == "-250px") {
-        sideNav.style.right = "0";
-        menu.src = "images/close.png";
-        } else {
-        sideNav.style.right = "-250px";
-        menu.src = "images/menu1.png";
-        }
-        }
-        var scroll = new SmoothScroll('a[href*="#"]', {
-        speed: 1000,
-        speedAsDuration: true
-        });
-
-    main
-      .container
-        section
-        if user
-          block content
-          //- if !user
-          //-   p Un site de réservation de parking entre particuliers pratique et facile
+            i.fa.fa-facebook
+            i.fa.fa-instagram
+            i.fa.fa-twitter
+            i.fa.fa-youtube-play
+            p Copyright KOUWE Verlaine
