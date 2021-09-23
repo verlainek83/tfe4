@@ -9,12 +9,12 @@ block content
         h1 PlaceToPark
         p Partager votre parking et gagner de l&apos;argent
         .banner-btn
-          a(href='#')
+          a(href='/login')
             span
-            | Find Out
-          a(href='#')
+            | Proposer votre parking
+          a(href='/login')
             span
-            | Read More
+            | Louer un parking
     #sideNav
       nav
         ul
@@ -142,6 +142,38 @@ block content
           p
             | Lorem ipsum dolor sit amet consectetur, adipisicing elit.
             | Ipsam, odio?
+    section#footer
+      img.footer-img(src='images/images (6).jpg' alt='')
+      .title-text
+          p CONTACT
+          h1 Visiter le Site Web Aujourd&apos;hui
+      .footer-row
+          .footer-left
+            h1 Horaires
+            p
+              i.fa.fa-clock-o
+              |  Lundi &agrave; Vendredi: 9H00 &agrave; 18H00
+            p
+              i.fa.fa-clock-o
+              |  Samedi et Dimanche: 12H00 &agrave; 16H00
+          .footer-right
+            h1 Contactez Nous
+            p
+              | impasse de picardie 3, 1348 louvain-la-neuve 
+              i.fa.fa-map-marker
+            p
+              | verly@yopmail.com 
+              i.fa.fa-paper-plane
+            p
+              | +32 465 82 98 74 
+              i.fa.fa-phone
+      .social-links
+          i.fa.fa-facebook
+          i.fa.fa-instagram
+          i.fa.fa-twitter
+          i.fa.fa-youtube-play
+          p Copyright KOUWE Verlaine
+
     script.
       var menuBtn = document.getElementById("menuBtn")
       var sideNav = document.getElementById("sideNav")
@@ -162,5 +194,6 @@ block content
       });
 
   if newlyAuthenticated
+   
     .alert.alert-success.alert-dismissible.fade.show Hi #{user.username}!
       button(type="button" class="btn-close" data-dismiss="alert" aria-label="Close")

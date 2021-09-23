@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  .sidebar
+    block sidebar
+      header
+        nav.navbar.navbar-expand-sm.navbar-dark.bg-dark.shadow
+            .container
+            ul.navbar-nav
+                li.nav-item
+                a.nav-link(href="/" class={active: currentUrl === "/"}) Home
+                if user
+                li.nav-item
+                    a.nav-link(href="/machines" class={active: currentUrl === "/machines"}) Machines
+                li.nav-item
+                    a.nav-link(href="/utilisations" class={active: currentUrl === "/utilisations"}) Utilisations
+                li.nav-item
+                    a.nav-link(href="/factures" class={active: currentUrl === "/factures"}) Factures
+                li.nav-item
+                    a.nav-link(href="/lignefactures" class={active: currentUrl === "/lignefactures"}) LigneFactures
+                li.nav-item
+                    a.nav-link(href="/roles" class={active: currentUrl === "/roles"}) Roles
+                li.nav-item
+                    a.nav-link(href="/logout") Logout
+                if !user
+                li.nav-item
+                    a.nav-link(href="/login" class={active: currentUrl === "/login"}) Login

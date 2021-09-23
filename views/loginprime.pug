@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  .container
+    .card
+        #card.inner-box
+        .card-front
+            h2 LOGIN
+            form(action="/login", method="post")
+                input.input-box(type='text' name='' id='' placeholder='Votre identifiant' required='')
+                input.input-box(type='password' name='' id='' placeholder='Votre mot de passe' required='')
+                button.submit-btn(type='submit') Envoyer
+                input(type='checkbox' name='' id='')
+            span Se souvenir de Moi
+            button.btn(type='button' onclick='openRegister()') Je suis nouveau ici!
+            a(href='http://') Mot de Passe oubli&eacute;
+        .card-back
+            h2 Cr&eacute;er Compte
+            form
+                input.input-box(type='text' placeholder='Votre Nom' required='')
+                input.input-box(type='text' placeholder='Votre Prénom' required='')
+                input.input-box(type='text' placeholder='Votre Identifiant' required='')
+                input.input-box(type='email' name='' id='' placeholder='Votre email' required='')
+                input.input-box(type='password' name='' id='' placeholder='Votre mot de passe' required='')
+            button.submit-btn(type='submit') Envoyer
+            input(type='checkbox' name='' id='')
+            span Se souvenir de Moi
+            button.btn(type='button' onclick='openLogin()') J&apos;ai d&eacute;j&agrave; un compte!
+            a(href='http://') Mot de Passe oubli&eacute;
+    script.
+        var card = document.getElementById("card");
+        function openRegister(){
+            card.style.transform = "rotateY(-180deg)";
+        }
+        function openLogin(){
+            card.style.transform = "rotateY(0deg)";
+        }
