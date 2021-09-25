@@ -1,6 +1,67 @@
 extends layout
 
 block content
+
+  if user
+    .menu-bar
+      ul
+        li.active
+          a(href='#')
+            i.fa.fa-home
+            |  Accueil
+        li
+          a(href='')
+            i.fa.fa-ticket
+            |  Reserver un parking
+          .sub-menu-1
+            ul
+              li.hover-me
+                a(href='')
+                | Profil
+                i.fa.fa-angle-right
+                .sub-menu-2
+                  ul
+                    li
+                      a(href='/account') Profil
+                    li
+                      a(href='') Mes reservations
+                    li
+                      a(href='') Mes parkings
+                    li
+                      a(href='') Dashboard
+              li
+                a(href='') Mes reservations
+              li
+                a(href='') Mes parkings
+              li
+                a(href='') Dashboard
+        li
+          a(href='/publications')
+            i.fa.fa-newspaper-o
+            |  Publications
+        li
+          a(href='')
+            i.fa.fa-save
+            |  Enregistrer son parking
+        li
+          a(href='')
+            i.fa.fa-user
+            |  #{user.username}
+          .sub-menu-1
+            ul
+              li
+                a(href='/account') Profil
+              li
+                a(href='') Mes reservations
+              li
+                a(href='') Mes parkings
+              li
+                a(href='') Dashboard
+        li
+          a(href='/logout')
+            i.fa.fa-sign-out
+            |  Se d&eacute;connecter
+
   h1 Location
   //- p Adresse: #{parking.adresse.nom}, #{parking.adresse.numero}
   p Date de début #{location.date_Debut}
