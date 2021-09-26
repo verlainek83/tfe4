@@ -3,5 +3,9 @@
         "activityBar.background": "#4B202C",
         "titleBar.activeBackground": "#692C3D",
         "titleBar.activeForeground": "#FEFCFC"
-    }
+    },
+    "oneDarkPro.editorTheme": "One Dark Pro Flat",
+    "workbench.colorTheme": "Viow Arabian - Mix",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.preferredDarkColorTheme": "Viow Arabian - Mix"
 }

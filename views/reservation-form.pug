@@ -1,6 +1,7 @@
 extends layout
 
 block content
+
   h1= nombrePlaces
   i.fa.fa-info-circle(aria-hidden='true')
   |  Bienvenue !
@@ -9,33 +10,33 @@ block content
 
   form#form(action="/reservations/create" method="post")
     .mb-3
-      label.form-label(for="nombrePlacesInput") Nombre de Places:
-      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+      label.form-label(for="codeReservationInput") code de reservation :
+      input#codeReservationInput.form-control(type="date", name="codeReservation")
     .mb-3
-      label.form-label(for="nombrePlacesInput") Nombre de Places:
-      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+      label.form-label(for="dateReservationInput") date de reservation:
+      input#dateReservationInput.form-control(type="date", name="dateReservation")
     .mb-3
-      label.form-label(for="nombrePlacesInput") Nombre de Places:
-      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+      label.form-label(for="dateOccupationInput") date d'occupation:
+      input#dateOccupationInput.form-control(type="date", name="dateOccupation")
     .mb-3
-      label.form-label(for="nombrePlacesInput") Nombre de Places:
-      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+      label.form-label(for="dateDepartInput") date de départ:
+      input#dateDepartInput.form-control(type="date", name="dateDepart")
     .mb-3
-      label.form-label(for="nombrePlacesInput") Nombre de Places:
-      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+      label.form-label(for="heureArriveeInput") heure d'arrivée:
+      input#heureArriveeInput.form-control(type="time", name="heureArrivee")
     .mb-3
-      label.form-label(for="nombrePlacesInput") Nombre de Places:
-      input#nombrePlacesInput.form-control(type="number", name="nombrePlaces")
+      label.form-label(for="heureDepartInput") heure de Depart:
+      input#heureDepartInput.form-control(type="time", name="heureDepart")
     .mb-3
-      label.form-label(for="validationReservationInput") validationReservation:
-      input#validationReservationInput.form-control(type="number", name="validationReservation")
+      //- label
+      //-   input(type='checkbox' checked='' name='validationReservation' disabled='')
+      //-   |  validationReservation
+      label.form-label(for="validationReservationInput") validation Reservation:
+      input#validationReservationInput.form-control(type="checkbox" checked='', name="validationReservation")
     .mb-3
-      label.form-label(for="coutTotalReservationInput") coutTotalReservation:
-      input#coutTotalReservationInput.form-control(type="number", name="coutTotalReservation")
-    .mb-3
-      label.form-label(for="numero_immatriculationInput") Numero d'immatriculation du véhicule:
-      input#numero_immatriculationInput.form-control(type="number", name="numero_immatriculation")
+        label.form-label(for="numeroImmatriculationInput") immatriculation du véhicule
+        input#numeroImmatriculationInput.form-control(type="text", name="numeroImmatriculation", value=vehicule.numeroImmatriculation)
     .mb-3
       button.btn.btn-primary(type="submit") Save
       | &nbsp;
-      a.btn.btn-outline-danger(href="/parkings/create") Cancel
+      a.btn.btn-outline-danger(href="/index") Cancel

@@ -73,6 +73,7 @@ router.get('/mesParkings', function(req, res, next) {
 });
 
 //CREATION D'UN NOUVEL UTILISATEUR: GET
+//router.get("/signup", async (req, res) => {
 router.get("/signup", async (req, res) => {
   const passwordMismatch = req.session.passwordMismatch;
   const compteCree = req.session.compteCree;
@@ -95,7 +96,7 @@ router.post("/signup", (req, res, next) => {
     
     if (req.body.password !== req.body.password2) {
         req.session.passwordMismatch = true;
-        return res.redirect("/signup");
+        return res.redirect("/login");
     }
 
     // procéder à l'insertion dans la base de données
@@ -106,7 +107,7 @@ router.post("/signup", (req, res, next) => {
             usermail: req.body.usermail,
             nom: req.body.nom,
             prenom: req.body.prenom,
-            adresse: req.body.adresse,
+            // adresse: req.body.adresse,
             telephone: req.body.telephone,
         }
     ]);
@@ -116,7 +117,7 @@ router.post("/signup", (req, res, next) => {
         clientRole = await Role.findOne({ where: { name: "client" } });
     } catch (error) {
         req.session.compteCree = false;
-        return res.redirect("/signup");
+        return res.redirect("/login");
     }
 
     console.log('clientRole', JSON.stringify(clientRole));

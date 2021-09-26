@@ -1,0 +1,20 @@
+extends layout 
+
+block content
+    if user
+            
+        h2 enregistrer votre véhicule
+        form(action="/vehicules/create" method="post")
+            input.input-box(name='numero_immatriculation' type='text' placeholder='Votre immatriculation' required='')
+            .mb-3
+                label.form-label(for="typeVehiculeId") Type de véhicule
+                select#typeVehiculeId(name="typeVehiculeId")
+                    each typeVehicule in typeVehicules
+                        option(value=typeVehicule.id) #{typeVehicule.nom}    
+                //- .mb-3
+                //- label.form-label(for="typeVehiculeId") Type de véhicule
+                //- select#typeVehiculeId(name="typeVehiculeId")
+                //-     each typeVehicule in typeVehicules
+                //-         option(value=typeVehicule.id) #{typeVehicule.nom}         
+            button.btn.btn-primary(type="submit") Save
+            a.btn.btn-outline-danger(href="/vehicules/create") Cancel

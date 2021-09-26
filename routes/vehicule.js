@@ -74,8 +74,9 @@ router.get("/create", async(req, res, next) => {
         if (!user.can("createVehicule")) {
             return next(createError(403));
         }
+        const typeVehicules = await TypeVehicule.findAll();
         //Affichage du formulaire de création d'une nouvelle vehicule
-        res.render("vehicule-form", { title: "Create vehicule", user });
+        res.render("vehicule-form", { title: "Create vehicule", user, typeVehicules });
     } catch (error) {
         next(error);
     }
@@ -89,10 +90,12 @@ router.post("/create", async(req, res, next) =>
       const [vehicule, created] = await Vehicule.findOrCreate({
           where: { 
             numero_immatriculation: req.body.numero_immatriculation,
+            typeVehiculeId: req.body.typeVehiculeId,
+            // locationId: req.body.locationId,
           },
       });
       //affichage de la liste des vehicules
-      res.redirect("/vehicules");
+      res.redirect("/reservations/create");
   } catch (error) {
       next(error);
   }

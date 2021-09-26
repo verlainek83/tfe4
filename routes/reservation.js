@@ -62,7 +62,8 @@ router.get("/create", async(req, res, next) => {
       if (!user.can("createReservation")) {
           return next(createError(403));
       }
-      res.render("reservation-form", { title: "Create reservation", user });
+      const vehicules = await Vehicule.findAll();
+      res.render("reservation-form", { title: "Create reservation", user, vehicules });
   } catch (error) {
       next(error);
   }
@@ -78,10 +79,10 @@ router.post("/create", async(req, res, next) =>
             dateReservation: req.body.dateReservation,
             dateOccupation: req.body.dateOccupation,
             dateDepart: req.body.dateDepart,
-            heureDebut: req.body.heureDebut,
+            heureArrivee: req.body.heureArrivee,
             heureDepart: req.body.heureDepart,
             validationReservation: req.body.validationReservation,
-            coutTotalReservation: req.body.coutTotalReservation,
+            // coutTotalReservation: req.body.coutTotalReservation,
             numeroImmatriculation: req.body. numeroImmatriculation
           },
       });
