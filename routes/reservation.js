@@ -22,7 +22,7 @@ router.get("/", async (req, res, next) => {
       //recherche de toutes les réservations
       const reservations = await Reservation.findAll({
         order: ["codeReservation", "dateReservation"],
-        include:['user', 'place', 'vehicule']
+        include:[User, Place, Vehicule]
       });
       res.render("reservations", {
         title: "Reservation list",
@@ -63,7 +63,9 @@ router.get("/create", async(req, res, next) => {
           return next(createError(403));
       }
       const vehicules = await Vehicule.findAll();
-      res.render("reservation-form", { title: "Create reservation", user, vehicules });
+      const places = await Place.findAll();
+      const users = await User.findAll();
+      res.render("reservation-form", { title: "Create reservation", user, vehicules, places, users});
   } catch (error) {
       next(error);
   }
@@ -82,8 +84,10 @@ router.post("/create", async(req, res, next) =>
             heureArrivee: req.body.heureArrivee,
             heureDepart: req.body.heureDepart,
             validationReservation: req.body.validationReservation,
-            // coutTotalReservation: req.body.coutTotalReservation,
-            numeroImmatriculation: req.body. numeroImmatriculation
+            vehiculeId: req.body. vehiculeId,
+            placeId: req.body.placeId,
+            userUsername: req.body.userUsername,
+
           },
       });
       res.redirect("/reservations");

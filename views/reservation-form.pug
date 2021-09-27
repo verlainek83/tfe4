@@ -31,11 +31,26 @@ block content
       //- label
       //-   input(type='checkbox' checked='' name='validationReservation' disabled='')
       //-   |  validationReservation
-      label.form-label(for="validationReservationInput") validation Reservation:
-      input#validationReservationInput.form-control(type="checkbox" checked='', name="validationReservation")
+      label.form-label(for="validationReservationInput") validation non:
+      input#validationReservationInput.form-control(type="checkbox", name="validationReservation" value="false")
+      label.form-label(for="validationReservationInput") validation oui:
+      input#validationReservationInput.form-control(type="checkbox", name="validationReservation" value="true")
+    //- .mb-3
+    //-     label.form-label(for="numeroImmatriculationInput") immatriculation du véhicule
+    //-     input#numeroImmatriculationInput.form-control(type="text", name="numeroImmatriculation", value=vehicule.numeroImmatriculation)
     .mb-3
-        label.form-label(for="numeroImmatriculationInput") immatriculation du véhicule
-        input#numeroImmatriculationInput.form-control(type="text", name="numeroImmatriculation", value=vehicule.numeroImmatriculation)
+        label.form-label(for="vehiculeId") Type de véhicule
+        select#vehiculeId(name="vehiculeId")
+            each vehicule in vehicules
+                option(value=vehicule.id) #{vehicule.numero_immatriculation}
+    .mb-3
+        label.form-label(for="placeId") dimension de la place
+        select#placeId(name="placeId")
+            each place in places
+                option(value=place.id) #{place.dimension} 
+    .mb-3 
+      label.form-label(for="userUsernameInput") Nom de l'utilisateur
+      input#userUsernameInput.form-control(type="text", name="userUsername", value=user.username)
     .mb-3
       button.btn.btn-primary(type="submit") Save
       | &nbsp;

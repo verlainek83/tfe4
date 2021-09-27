@@ -2,44 +2,23 @@ extends layout
 
 block content
 
-  .menu-bar
+  if user 
+    .menu-bar
       ul
         li
           a(href="/parkings/create" class={active: currentUrl === "/parkings/create/new"}) 
             i.fa.fa-save
             |  Enregistrer son parking
         li
-          a(href="/locations/create" class={active: currentUrl === "/locations/create/new"}) 
+          a(href="/parkings/" class={active: currentUrl === "/parkings"}) 
+            i.fa.fa-ticket
+            |  Faire une reservation
+        li
+           a(href="/parkings" class={active: currentUrl === "/parkings"})
             i.fa.fa-ticket
             |  Faire une location
         li
-          a(href='/reservations')
-            i.fa.fa-ticket
-            |  Faire une réservation
-          .sub-menu-1
-            ul
-              li.hover-me
-                a(href='')
-                | Profil
-                i.fa.fa-angle-right
-                .sub-menu-2
-                  ul
-                    li
-                      a(href='/account') Profil
-                    li
-                      a(href='') Mes reservations
-                    li
-                      a(href='/mesParkings') Mes parkings
-                    li
-                      a(href='') Dashboard
-              li
-                a(href='') Mes reservations
-              li
-                a(href='') Mes parkings
-              li
-                a(href='') Dashboard
-        li
-          a(href='/publications')
+          a(href='/roles')
             i.fa.fa-newspaper-o
             |  Publications
         li.active
@@ -78,7 +57,6 @@ block content
         th(scope="col") heureDebut
         th(scope="col") heureDepart
         th(scope="col") validationReservation
-        th(scope="col") coutTotalReservation
         th(scope="col") numeroImmatriculation
         th(scope="col") place description
         th(scope="col") &nbsp;
@@ -92,7 +70,6 @@ block content
           td= reservation.heureDebut
           td= reservation.heureDepart
           td= reservation.validationReservation
-          td= reservation.coutTotalReservation
           td= reservation.vehicule.numero_immatriculation
           td= reservation.place.description
           td
