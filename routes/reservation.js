@@ -24,6 +24,7 @@ router.get("/", async (req, res, next) => {
         order: ["codeReservation", "dateReservation"],
         include:[User, Place, Vehicule]
       });
+      console.log(reservations);
       res.render("reservations", {
         title: "Reservation list",
         reservations,
@@ -34,7 +35,23 @@ router.get("/", async (req, res, next) => {
       next(error);
     }
   });
-  
+
+  router.get("/:username",async(req,res,next) => {
+    try {
+      console.log(req.params);
+      console.log(req.body);
+      const user = await Reservation.findOne({
+        where: { 
+          userUsername: req.params.username
+        },
+        // include: User,
+      });
+      console.log(user);
+    } catch (error) {
+      
+    }
+  });
+
   router.get("/:id/details", async (req, res, next) => {
     try {
       const user = req.user;

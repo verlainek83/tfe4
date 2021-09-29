@@ -91,7 +91,7 @@ router.post("/create", async(req, res, next) =>
       const [publication, created] = await Publication.findOrCreate({
           where: { 
             description: req.body.description,
-            userUsername: req.body.username,
+            userUsername: req.body.userUsername,
           },
       });
       //affichage de la liste des publications

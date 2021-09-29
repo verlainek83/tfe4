@@ -3,18 +3,25 @@ extends layout
 block content
     if user
             
-        h2 enregistrer votre véhicule
+        h2 Enregistrer votre véhicule
         form(action="/vehicules/create" method="post")
-            input.input-box(name='numero_immatriculation' type='text' placeholder='Votre immatriculation' required='')
+            label(for="heure_FinInput") Entrer l'immatriculation du véhicule:
+                input.input-box(name='numero_immatriculation' type='text' placeholder='Votre immatriculation' required='')
+            br
+            br
             .mb-3
-                label.form-label(for="typeVehiculeId") Type de véhicule
+                label.form-label(for="typeVehiculeId") Type de véhicule: 
                 select#typeVehiculeId(name="typeVehiculeId")
                     each typeVehicule in typeVehicules
-                        option(value=typeVehicule.id) #{typeVehicule.nom}    
+                        option(value=typeVehicule.id) #{typeVehicule.nom} 
+            br   
                 //- .mb-3
                 //- label.form-label(for="typeVehiculeId") Type de véhicule
                 //- select#typeVehiculeId(name="typeVehiculeId")
                 //-     each typeVehicule in typeVehicules
                 //-         option(value=typeVehicule.id) #{typeVehicule.nom}         
             button.btn.btn-primary(type="submit") Save
-            a.btn.btn-outline-danger(href="/vehicules/create") Cancel
+            br
+            br
+            button.btn.btn-primary
+                a.btn.btn-outline-danger(href="/vehicules/create") Cancel

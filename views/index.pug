@@ -201,15 +201,15 @@ block content
             i.fa.fa-save
             |  Enregistrer son parking
         li
-          a(href="/parkings/" class={active: currentUrl === "/parkings"}) 
+          a(href="/parkings" class={active: currentUrl === "/parkings"}) 
             i.fa.fa-ticket
             |  Faire une reservation
         li
-           a(href="/parkings" class={active: currentUrl === "/parkings"})
+           a(href="/places" class={active: currentUrl === "/places"})
             i.fa.fa-ticket
             |  Faire une location
         li
-          a(href='/roles')
+          a(href='/publications')
             i.fa.fa-newspaper-o
             |  Publications
         li.active
@@ -221,7 +221,7 @@ block content
               li
                 a(href='/account') Profil
               li
-                a(href='') Mes reservations
+                a(href='/reservations') Mes reservations
               li
                 a(href='') Mes parkings
               li

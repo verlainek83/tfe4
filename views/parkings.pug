@@ -2,43 +2,42 @@ extends layout
 
 block content
 
-  if user
-    .menu-bar
-      ul
-        li
-          a(href="/parkings/create" class={active: currentUrl === "/parkings/create/new"}) 
-            i.fa.fa-save
-            |  Enregistrer son parking
-        li
-          a(href="/parkings/" class={active: currentUrl === "/parkings"}) 
-            i.fa.fa-ticket
-            |  Faire une reservation
-        li
-           a(href="/parkings" class={active: currentUrl === "/parkings"})
-            i.fa.fa-ticket
-            |  Faire une location
-        li
-          a(href='/roles')
-            i.fa.fa-newspaper-o
-            |  Publications
-        li.active
-          a(href='')
-            i.fa.fa-user
-            |  #{user.username}
-          .sub-menu-1
-            ul
-              li
-                a(href='/account') Profil
-              li
-                a(href='') Mes reservations
-              li
-                a(href='') Mes parkings
-              li
-                a(href='') Dashboard
-        li
-          a(href='/logout')
-            i.fa.fa-sign-out
-            |  Se d&eacute;connecter
+  .menu-bar
+    ul
+      li
+        a(href="/parkings/create" class={active: currentUrl === "/parkings/create/new"}) 
+          i.fa.fa-save
+          |  Enregistrer son parking
+      li
+        a(href="/parkings" class={active: currentUrl === "/parkings"}) 
+          i.fa.fa-ticket
+          |  Faire une reservation
+      li
+        a(href="/parkings" class={active: currentUrl === "/parkings"})
+          i.fa.fa-ticket
+          |  Faire une location
+      li
+        a(href='/roles')
+          i.fa.fa-newspaper-o
+          |  Publications
+      li.active
+        a(href='')
+          i.fa.fa-user
+          |  #{user.username}
+        .sub-menu-1
+          ul
+            li
+              a(href='/account') Profil
+            li
+              a(href='') Mes reservations
+            li
+              a(href='') Mes parkings
+            li
+              a(href='') Dashboard
+      li
+        a(href='/logout')
+          i.fa.fa-sign-out
+          |  Se d&eacute;connecter
 
   h1= title
 
