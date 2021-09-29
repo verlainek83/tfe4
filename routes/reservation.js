@@ -36,38 +36,44 @@ router.get("/", async (req, res, next) => {
     }
   });
 
-  router.get("/:username",async(req,res,next) => {
-    try {
-      console.log(req.params);
-      console.log(req.body);
-      const user = await Reservation.findOne({
-        where: { 
-          userUsername: req.params.username
-        },
-        // include: User,
+router.get("/:username",async(req,res,next) => {
+  try {
+    console.log(req.params);
+    console.log(req.body);
+    const user = await Reservation.findOne({
+      where: { 
+        userUsername: req.params.username
+      },
+      // include: User,
+    });
+    console.log(user);
+      res.render("account", {
+        title: "Reservation list",
+        mesReservations,
+        user,
+        currentUrl: req.originalUrl,
       });
-      console.log(user);
-    } catch (error) {
-      
-    }
-  });
+  } catch (error) {
+    
+  }
+});
 
-  router.get("/:id/details", async (req, res, next) => {
-    try {
-      const user = req.user;
-      if (!user) {
-        return res.redirect("/login");
-      }
-      if (!user.can("viewReservationDetails")) {
-        return next(createError(403));
-      }
-      const reservationId = req.params.id;
-      const reservation = await Reservation.findByPk(reservationId);
-      res.render("reservation-details", { title: reservation.codeReservation, user, reservation });
-    } catch (error) {
-      next(error);
+router.get("/:id/details", async (req, res, next) => {
+  try {
+    const user = req.user;
+    if (!user) {
+      return res.redirect("/login");
     }
-  });
+    if (!user.can("viewReservationDetails")) {
+      return next(createError(403));
+    }
+    const reservationId = req.params.id;
+    const reservation = await Reservation.findByPk(reservationId);
+    res.render("reservation-details", { title: reservation.codeReservation, user, reservation });
+  } catch (error) {
+    next(error);
+  }
+});
 
   //CREATION D'UNE NOUVELLE RESERVATION: GET
 router.get("/create", async(req, res, next) => {

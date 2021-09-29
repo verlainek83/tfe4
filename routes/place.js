@@ -94,10 +94,12 @@ router.post("/create", async(req, res, next) =>
           where: { 
             description: req.body.description,
              dimension: req.body. dimension,
+             parkingId: req.body.parkingId,
+             
           },
       });
       //affichage de la liste des places
-      res.redirect("/parkings/");
+      res.redirect("/tarifs/create");
   } catch (error) {
       next(error);
   }

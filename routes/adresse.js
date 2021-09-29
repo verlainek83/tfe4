@@ -92,7 +92,7 @@ router.post("/create", async(req, res, next) =>
           where: { 
             nom: req.body.nom,
             numero: req.body.numero,
-            communeIdCommune: req.body.communeIdCommune,
+            communeId: req.body.communeId,
           },
       });
       //affichage de la liste des adresses

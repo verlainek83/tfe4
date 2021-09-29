@@ -8,6 +8,7 @@ const Trafic = require('../models/trafic');
 const TypeVehicule = require('../models/typeVehicule');
 // const Parking = require('../models/parking');
 const Tarif = require("../models/tarif");
+const Parking = require('../models/parking');
 //FONCTION QUI DONNE LA LISTE DE TOUS LES TARIFS: GET
 router.get("/", async (req, res, next) => {
   try {
@@ -77,7 +78,10 @@ router.get("/create", async(req, res, next) => {
           return next(createError(403));
       }
       //Affichage du formulaire de création d'un nouveau tarif
-      res.render("tarif-form", { title: "Create Tarif", user });
+      const typeVehicules = await TypeVehicule.findAll();
+      const parkings = await Parking.findAll();
+      const trafics = await Trafic.findAll();
+      res.render("tarif-form", { title: "Create Tarif", user, typeVehicules, parkings, trafics});
   } catch (error) {
       next(error);
   }
@@ -91,10 +95,13 @@ router.post("/create", async(req, res, next) =>
       const [tarif, created] = await Tarif.findOrCreate({
           where: { 
             montant: req.body.montant,
+            typeVehiculeId: req.body.typeVehiculeId,
+            parkingId: req.body.parkingId,
+            traficId: req.body.traficId,            
           },
       });
        //affichage de la liste des tarifs
-      res.redirect("/tarifs");
+      res.redirect("/publications/create");
   } catch (error) {
       next(error);
   }

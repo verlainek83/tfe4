@@ -2,61 +2,42 @@ extends layout
 
 block content 
 
-    .menu-bar
-      ul
-        li
-          a(href="/parkings/create" class={active: currentUrl === "/parkings/create/new"}) 
-            i.fa.fa-save
-            |  Enregistrer son parking
-        li
-          a(href="/locations/create" class={active: currentUrl === "/locations/create/new"}) 
-            i.fa.fa-ticket
-            |  Faire une location
-        li
-          a(href='/reservations')
-            i.fa.fa-ticket
-            |  Faire une réservation
-          .sub-menu-1
-            ul
-              li.hover-me
-                a(href='')
-                | Profil
-                i.fa.fa-angle-right
-                .sub-menu-2
-                  ul
-                    li
-                      a(href='/account') Profil
-                    li
-                      a(href='') Mes reservations
-                    li
-                      a(href='/mesParkings') Mes parkings
-                    li
-                      a(href='') Dashboard
-              li
-                a(href='') Mes reservations
-              li
-                a(href='') Mes parkings
-              li
-                a(href='') Dashboard
-        li
-          a(href='/publications')
-            i.fa.fa-newspaper-o
-            |  Publications
-        li.active
-          a(href='')
-            i.fa.fa-user
-            |  #{user.username}
-          .sub-menu-1
-            ul
-              li
-                a(href='/account') Profil
-              li
-                a(href='') Mes reservations
-              li
-                a(href='') Mes parkings
-              li
-                a(href='') Dashboard
-        li
-          a(href='/logout')
-            i.fa.fa-sign-out
-            |  Se d&eacute;connecter
+  h2 Entrer votre tarif 
+ 
+  i.fa.fa-info-circle(aria-hidden='true')
+  |  Bienvenue !
+  p Enregistrez votre Tarif. 
+  
+  
+    form#form(action="/tarifs/create" method="post")
+      .mb-3
+        label.form-label(for="montantInput") Entrez le tarif de la place/min:
+        input#montantInput.form-control(type="text", name="montant") 
+      br
+      .mb-3
+        label.form-label(for="typeVehiculeIdSelect") typeVehicule:
+        select#typeVehiculeIdSelect(name="typeVehiculeId")
+          each typeVehicule in typeVehicules
+            option(value=typeVehicule.id) #{typeVehicule.nom} 
+      br
+      .mb-3
+        label.form-label(for="parkingIdSelect") Nombre de places dans le parking:
+        select#parkingIdSelect(name="parkingId")
+          each parking in parkings
+            option(value=parking.id) #{parking.nombrePlaces} 
+      br
+      .mb-3
+        label.form-label(for="traficIdSelect") trafic: 
+        select#traficIdSelect(name="traficId")
+          each trafic in trafics
+            option(value=trafic.id) #{trafic.nom} 
+      br
+      
+      .mb-3
+        button.btn.btn-primary(type="submit") Save
+          i.fa.fa-save
+        | &nbsp;
+        button.btn.btn-primary
+          a.btn.btn-outline-danger(href="/tarifs") Cancel
+          i.fa.fa-window-close
+        | &nbsp;

@@ -92,7 +92,7 @@ router.post("/create", async(req, res, next) =>
       const [parking, created] = await Parking.findOrCreate({
           where: { 
             nombrePlaces: req.body.nombrePlaces, 
-            adresseIdAdresse: req.body.adresseIdAdresse,
+            adresseId: req.body.adresseId,
             userUsername: req.body.userUsername,
           },
       });

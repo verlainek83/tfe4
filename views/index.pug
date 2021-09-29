@@ -9,10 +9,10 @@ block content
         h1 PlaceToPark
         p Partager votre parking et gagner de l&apos;argent
         .banner-btn
-          a(href='/login')
+          a(href="/adresses/create" class={active: currentUrl === "/adresses/create/new"}) 
             span
             | Proposer votre parking
-          a(href='/login')
+          a(href="/adresses/create" class={active: currentUrl === "/adresses/create/new"}) 
             span
             | Louer un parking
     #sideNav
@@ -197,7 +197,7 @@ block content
     .menu-bar
       ul
         li
-          a(href="/parkings/create" class={active: currentUrl === "/parkings/create/new"}) 
+          a(href="/adresses/create" class={active: currentUrl === "/adresses/create/new"}) 
             i.fa.fa-save
             |  Enregistrer son parking
         li
@@ -221,7 +221,7 @@ block content
               li
                 a(href='/account') Profil
               li
-                a(href='/reservations') Mes reservations
+                a(href='/mesReservations') Mes reservations
               li
                 a(href='') Mes parkings
               li

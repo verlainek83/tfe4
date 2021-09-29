@@ -1,85 +1,34 @@
 extends layout
 
 block content
-  if user
-   .menu-bar
-      ul
-        li
-          a(href="/parkings/create" class={active: currentUrl === "/parkings/create/new"}) 
-            i.fa.fa-save
-            |  Enregistrer son parking
-        li
-          a(href="/locations/create" class={active: currentUrl === "/locations/create/new"}) 
-            i.fa.fa-ticket
-            |  Faire une location
-        li
-          a(href='/reservations')
-            i.fa.fa-ticket
-            |  Faire une réservation
-          .sub-menu-1
-            ul
-              li.hover-me
-                a(href='')
-                | Profil
-                i.fa.fa-angle-right
-                .sub-menu-2
-                  ul
-                    li
-                      a(href='/account') Profil
-                    li
-                      a(href='') Mes reservations
-                    li
-                      a(href='/mesParkings') Mes parkings
-                    li
-                      a(href='') Dashboard
-              li
-                a(href='') Mes reservations
-              li
-                a(href='') Mes parkings
-              li
-                a(href='') Dashboard
-        li
-          a(href='/publications')
-            i.fa.fa-newspaper-o
-            |  Publications
-        li.active
-          a(href='')
-            i.fa.fa-user
-            |  #{user.username}
-          .sub-menu-1
-            ul
-              li
-                a(href='/account') Profil
-              li
-                a(href='') Mes reservations
-              li
-                a(href='') Mes parkings
-              li
-                a(href='') Dashboard
-        li
-          a(href='/logout')
-            i.fa.fa-sign-out
-            |  Se d&eacute;connecter
-
-  h1= nombrePlaces
+  
+  h3 Enregistrer votre adresse 
+ 
   i.fa.fa-info-circle(aria-hidden='true')
   |  Bienvenue !
   p Enregistrez votre parking sur Placetopark.
   p La location de parking zéro contraintes ! 😍
-
-  form#form(action="/adresses/create" method="post")
-    .mb-3
-      label.form-label(for="nomInput") Entrez le nom de la rue:
-      input#nomInput.form-control(type="text", name="nom")
-    .mb-3
-      label.form-label(for="numeroInput") Entrez le numéro de la rue:
-      input#nuImeronput.form-control(type="number", name="numero")
-    .mb-3
-      label.form-label(for="communeIdCommuneSelect") Commune
-      select#communeIdCommuneSelect(name="communeIdCommune")
-        each commune in communes
-          option(value=commune.idCommune) #{commune.idCommune}, #{commune.nom} , #{commune.codePostal}
-    .mb-3
-      button.btn.btn-primary(type="submit") Save
-      | &nbsp;
-      a.btn.btn-outline-danger(href="/adresses") Cancel
+  
+  
+    form#form(action="/adresses/create" method="post")
+      .mb-3
+        label.form-label(for="nomInput") Entrez le nom de la rue:
+        input#nomInput.form-control(type="text", name="nom")
+      br
+      .mb-3
+        label.form-label(for="numeroInput") Entrez le numéro de la rue:
+        input#nuImeronput.form-control(type="number", name="numero")
+      br
+      .mb-3
+        label.form-label(for="communeId") Type de véhicule: 
+        select#communeId(name="communeId")
+          each commune in communes
+            option(value=commune.id) #{commune.nom}, #{commune.codePostal}
+      br
+      .mb-3
+        button.btn.btn-primary(type="submit") Save
+          i.fa.fa-save
+        | &nbsp;
+        button.btn.btn-primary
+          a.btn.btn-outline-danger(href="/adresses") Cancel
+          i.fa.fa-window-close
