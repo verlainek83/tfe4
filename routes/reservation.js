@@ -32,31 +32,60 @@ router.get("/", async (req, res, next) => {
         currentUrl: req.originalUrl,
       });
     } catch (error) {
-      next(error);
+      next(error('unable to see'));
     }
   });
-
-router.get("/:username",async(req,res,next) => {
+router.get("/:username", async(req, res, next) => {
   try {
-    console.log(req.params);
-    console.log(req.body);
-    const user = await Reservation.findOne({
-      where: { 
-        userUsername: req.params.username
-      },
-      // include: User,
-    });
-    console.log(user);
-      res.render("account", {
-        title: "Reservation list",
-        mesReservations,
+    // const user = req.user;
+      // if (!user) {
+      //   return res.redirect("/login");
+      // }
+      // if (!user.can("listReservationsUsername")) {
+      //   return next(createError(403));
+      // }
+      //recherche de toutes les réservations
+      console.log(req.params);
+      console.log(req.body);
+      const user = await Reservation.findOne({
+        where: { 
+          userUsername: req.params.username
+        },
+        include: User,
+      });
+      console.log(user);
+      res.render("mesReservations", {
+        title: "mesReservations",
+        // reservations,
         user,
         currentUrl: req.originalUrl,
-      });
+      });    
   } catch (error) {
-    
+    next(error('unable to see'));
   }
 });
+
+// router.get("/:username",async(req,res,next) => {
+//   try {
+//     console.log(req.params);
+//     console.log(req.body);
+//     const user = await Reservation.findOne({
+//       where: { 
+//         userUsername: req.params.username
+//       },
+//       // include: User,
+//     });
+//     console.log(user);
+//       res.render("account", {
+//         title: "Reservation list",
+//         mesReservations,
+//         user,
+//         currentUrl: req.originalUrl,
+//       });
+//   } catch (error) {
+//     next(error('unable to see'));
+//   }
+// });
 
 router.get("/:id/details", async (req, res, next) => {
   try {

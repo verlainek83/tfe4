@@ -107,8 +107,9 @@ router.post("/signup", (req, res, next) => {
             usermail: req.body.usermail,
             nom: req.body.nom,
             prenom: req.body.prenom,
-            // adresse: req.body.adresse,
             telephone: req.body.telephone,
+            adresseId: req.body.adresseId,
+            roleName: req.body.roleName,
         }
     ]);
 

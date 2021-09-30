@@ -93,6 +93,11 @@ console.log(
       deleteLocationPerm,
       listLocationsPerm,
       viewLocationDetailsPerm,
+      createRolePerm,
+      editRolePerm,
+      deleteRolePerm,
+      listRolesPerm,
+      viewRoleDetailsPerm,
     ] = await Permission.bulkCreate([
       { name: "createPlace" },
       { name: "editPlace" },
@@ -159,6 +164,11 @@ console.log(
       { name: "deleteLocation"},
       { name: "listLocations"},
       { name: "viewLocationDetails"},
+      { name: "createRole"},
+      { name: "editRole"},
+      { name: "deleteRole"},
+      { name: "listRoles"},
+      { name: "viewRoleDetails"},
     ]);
     
     const [clientRole, proprietaireRole, managerRole] = await Role.bulkCreate([
@@ -365,7 +375,12 @@ console.log(
         editLocationPerm,
         deleteLocationPerm,
         listLocationsPerm,
-        viewLocationDetailsPerm,]),
+        viewLocationDetailsPerm,
+        createRolePerm,
+        editRolePerm,
+        deleteRolePerm,
+        listRolesPerm,
+        viewRoleDetailsPerm,]),
     ]);
     //remplissage de la table region
     await Region.bulkCreate([
