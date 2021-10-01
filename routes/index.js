@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
-const {User} = require("../models/User");
+const {User, Role} = require("../models/User");
 
 const saltRounds = 10;
 
@@ -114,22 +114,52 @@ router.post("/signup", (req, res, next) => {
     ]);
 
     let clientRole;
+    let proprietaireRole;
     try {
         clientRole = await Role.findOne({ where: { name: "client" } });
+        proprietaireRole = await Role.findOne({ where: { name: "proprietaire"}});
     } catch (error) {
         req.session.compteCree = false;
         return res.redirect("/login");
     }
 
     console.log('clientRole', JSON.stringify(clientRole));
-
-    await Promise.all([
+    if ( newUser && clientRole == req.params.roleName) {
+      await Promise.all([
         newUser.setRoles([clientRole])
-    ]);
-
+     ]);
+    } else if ( proprietaireRole == req.params.roleName) {
+      await Promise.all([
+        newUser.setRoles([proprietaireRole])
+      ]);
+    }
+    
     req.session.compteCree = true;
     return res.redirect("/login");
   })(req, res, next);
+});
+//AFFICHAGE DE LA LISTE DES ROLES: GET
+router.get("/roles", async(req, res, next) => {
+  try {
+      const user = req.user;
+      if (!user) {
+          return res.redirect("/login");
+      }
+      if (!user.can("listRoles")) {
+          return next(createError(403));
+      }
+      const roles = await Role.findAll({
+          order: ["name"],
+      });
+      res.render("roles", {
+          title: "Role list",
+          roles,
+          user,
+          currentUrl: req.originalUrl,
+      });
+  } catch (error) {
+      next(error);
+  }
 });
 //RESET PASSWORD
 router.get("/reset", async (req, res) => {

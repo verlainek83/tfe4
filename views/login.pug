@@ -35,6 +35,11 @@ block content
             input.input-box(type='text' name='nom' placeholder='Votre Nom' required='')
             input.input-box(type='text' name='prenom' placeholder='Votre Prénom' required='')
             input.input-box(type='text' name='telephone' placeholder='Votre Telephone' required='')
+            label.form-label(for="roleName") choix role: 
+              select#roleName(name="roleName")
+                option(value='') Sélectionner un role
+                option(value='proprietaire') Propriétaire
+                option(value='client') Client
             button.submit-btn(type='submit') Créer
           button.btn(type='button' onclick='openLogin()') J&apos;ai d&eacute;j&agrave; un compte!
   
