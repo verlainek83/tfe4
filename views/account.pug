@@ -9,7 +9,7 @@ block content
             i.fa.fa-save
             |  Enregistrer son parking
         li
-          a(href="/parkings/" class={active: currentUrl === "/parkings"}) 
+          a(href="/parkings" class={active: currentUrl === "/parkings"}) 
             i.fa.fa-ticket
             |  Faire une reservation
         li
@@ -51,11 +51,13 @@ block content
           th(scope="col") Prénom
           th(scope="col") Telephone
           th(scope="col") Adresse mail
+          th(scope="col") Role
       tbody
         tr
           td= user.nom
           td= user.prenom
           td= user.telephone
           td= user.usermail
+          //- td= user.role.name
   else
     p Please log in...

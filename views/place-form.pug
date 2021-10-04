@@ -1,43 +1,44 @@
 extends layout
 
 block content
+  body(style='background-color:powderblue;')
+    center()
+      h1 Données de la place de parking
+      form(action="/places/create" method="post")
+        //- .mb-3
+        //-   label.form-label(for="parkingIdInput") Parking
+        //-   input#parkingIdInput.form-control(type="number", name="parkingId" value=parking.id)
+        //- .mb-3
+        //-   label.form-label(for="typeVehiculeParkerInput") Type de Vehicule à parker
+        //-   input#typeVehiculeParkerInput.form-control(type="text", name="typeVehiculeParker", value=place.typeVehiculeParker)
+        .mb-3
+          label.form-label(for="descriptionInput") Description: 
+          //- input#descriptionInput.form-control(type="text", name="description")
+          textarea#description(type="text", name='description' placeholder='Votre description' required='' rows='4' cols='50' maxlength='200')
 
-  h1 Données de la place de parking
-  form(action="/places/create" method="post")
-    //- .mb-3
-    //-   label.form-label(for="parkingIdInput") Parking
-    //-   input#parkingIdInput.form-control(type="number", name="parkingId" value=parking.id)
-    //- .mb-3
-    //-   label.form-label(for="typeVehiculeParkerInput") Type de Vehicule à parker
-    //-   input#typeVehiculeParkerInput.form-control(type="text", name="typeVehiculeParker", value=place.typeVehiculeParker)
-    .mb-3
-      label.form-label(for="descriptionInput") Description: 
-      //- input#descriptionInput.form-control(type="text", name="description")
-      textarea#description(type="text", name='description' placeholder='Votre description' required='' rows='4' cols='50' maxlength='200')
-
-    br
-    .mb-3
-      label.form-label(for="dimensionInput") dimension: 
-      input#dimensionInput.form-control(type="text", name="dimension")
-    br
-    .mb-3 
-      label.form-label(for="parkingIdInput") Nombres de places: 
-        //- input#dimensionInput.form-control(type="text", name="dimension")
-        //- label.form-label(for="parkingId") Type de véhicule: 
-        select#parkingId(name="parkingId")
-            each parking in parkings
-                option(value=parking.id) #{parking.nombrePlaces}
-    br
-    .mb-3
-      label.form-label(for="typeVehiculeId") Type de véhicule: 
-        select#typeVehiculeId(name="typeVehiculeId")
-            each typeVehicule in typeVehicules
-                option(value=typeVehicule.id) #{typeVehicule.nom}
-    br
-    .mb-3
-      button.btn.btn-primary(type="submit") Save
-        i.fa.fa-save
-      | &nbsp;
-      button.btn.btn-primary
-        a.btn.btn-outline-danger(href="/parkings") Cancel
-        i.fa.fa-window-close
+        br
+        .mb-3
+          label.form-label(for="dimensionInput") dimension: 
+          input#dimensionInput.form-control(type="text", name="dimension")
+        br
+        .mb-3 
+          label.form-label(for="parkingIdInput") Nombres de places: 
+            //- input#dimensionInput.form-control(type="text", name="dimension")
+            //- label.form-label(for="parkingId") Type de véhicule: 
+            select#parkingId(name="parkingId")
+                each parking in parkings
+                    option(value=parking.id) #{parking.nombrePlaces}
+        br
+        .mb-3
+          label.form-label(for="typeVehiculeId") Type de véhicule: 
+            select#typeVehiculeId(name="typeVehiculeId")
+                each typeVehicule in typeVehicules
+                    option(value=typeVehicule.id) #{typeVehicule.nom}
+        br
+        .mb-3
+          button.btn.btn-primary(type="submit") Save
+            i.fa.fa-save
+          | &nbsp;
+          button.btn.btn-primary
+            a.btn.btn-outline-danger(href="/parkings") Cancel
+            i.fa.fa-window-close

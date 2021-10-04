@@ -2,7 +2,7 @@ extends layout
 
 block content
   if user
-     .menu-bar
+    .menu-bar
       ul
         li
           a(href="/adresses/create" class={active: currentUrl === "/adresses/create/new"}) 
@@ -13,7 +13,7 @@ block content
             i.fa.fa-ticket
             |  Faire une reservation
         li
-           a(href="/places" class={active: currentUrl === "/places"})
+           a(href="/roles" class={active: currentUrl === "/roles"})
             i.fa.fa-ticket
             |  Faire une location
         li
@@ -29,7 +29,7 @@ block content
               li
                 a(href='/account') Profil
               li
-                a(href='/mesReservations') Mes reservations
+                a(href='/users') Mes reservations
               li
                 a(href='') Mes parkings
               li

@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  body(style='background-color:powderblue;')
+    center()
+      h1(style='text-transform: uppercase;') Détails du l'utilisateur
+      p 
+        i Nom et prenom: 
+        b(style='color: #009688') #{user.nom.toUpperCase()} #{user.prenom.toUpperCase()}
+      p 
+        i Adresse:  
+        b(style='color: #009688') #{user.adresse.nom}, #{user.adresse.numero}
+      p 
+        i Mail: 
+        b(style='color: #009688') #{user.usermail}
+      p 
+        i Téléphone: 
+        b(style='color: #009688') #{user.telephone}
+    
+      a.nav-link(href="/users" class={active: currentUrl === "/users"}) 
+        button.btn.btn-outline-success(type='button' style='color: #009688') Retour

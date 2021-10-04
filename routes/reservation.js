@@ -32,38 +32,24 @@ router.get("/", async (req, res, next) => {
         currentUrl: req.originalUrl,
       });
     } catch (error) {
-      next(error('unable to see'));
+      // next(error('unable to see'));
+      throw new Error('Pas de reservations trouvées')
     }
   });
-router.get("/:username", async(req, res, next) => {
-  try {
-    // const user = req.user;
-      // if (!user) {
-      //   return res.redirect("/login");
-      // }
-      // if (!user.can("listReservationsUsername")) {
-      //   return next(createError(403));
-      // }
-      //recherche de toutes les réservations
-      console.log(req.params);
-      console.log(req.body);
-      const user = await Reservation.findOne({
-        where: { 
-          userUsername: req.params.username
-        },
-        include: User,
-      });
-      console.log(user);
-      res.render("mesReservations", {
-        title: "mesReservations",
-        // reservations,
-        user,
-        currentUrl: req.originalUrl,
-      });    
-  } catch (error) {
-    next(error('unable to see'));
-  }
-});
+  
+  // router.get("/users/:username", async(req,res) => {
+  //   console.log(req.params);
+  //   console.log(req.body);
+  //   const user = await Reservation.findOne({
+  //     where: { 
+  //       userUsername: req.params.username
+  //     },
+  //     include: User,
+  //   });
+  //   console.log(user);
+  //   res.status(200);
+  //   res.send(req.params.username);
+  // });
 
 // router.get("/:username",async(req,res,next) => {
 //   try {

@@ -1,22 +1,23 @@
 extends layout
 
 block content
-
-  h1= name
-  form(action="/locations/"+location.id, method="post")
-    .mb-3
-      label.form-label(for="date_DebutInput") date_Debut
-      input#date_DebutInput.form-control(type="date", name="date_Debut", value=location.date_Debut)
-    .mb-3
-      label.form-label(for="date_FinInput") date_Fin
-      input#date_FinInput.form-control(type="date", name="date_Fin", value=location.date_Fin)
-    .mb-3
-      label.form-label(for="heure_DebutInput") heure_Debut
-      input#heure_DebutInput.form-control(type="time", name="heure_Debut", value=location.heure_Debut)
-    .mb-3
-      label.form-label(for="heure_FinInput") heure_Fin
-      input#heure_FinInput.form-control(type="time", name="heure_Fin", value=location.heure_Fin)
-    .mb-3
-      button.btn.btn-primary(type="submit") Save
-      | &nbsp;
-      a.btn.btn-outline-danger(href="/locations/"+location.id) Cancel
+  body(style='background-color:powderblue;')
+    center()
+      h1= name
+      form(action="/locations/"+location.id, method="post")
+        .mb-3
+          label.form-label(for="date_DebutInput") date_Debut
+          input#date_DebutInput.form-control(type="date", name="date_Debut", value=location.date_Debut)
+        .mb-3
+          label.form-label(for="date_FinInput") date_Fin
+          input#date_FinInput.form-control(type="date", name="date_Fin", value=location.date_Fin)
+        .mb-3
+          label.form-label(for="heure_DebutInput") heure_Debut
+          input#heure_DebutInput.form-control(type="time", name="heure_Debut", value=location.heure_Debut)
+        .mb-3
+          label.form-label(for="heure_FinInput") heure_Fin
+          input#heure_FinInput.form-control(type="time", name="heure_Fin", value=location.heure_Fin)
+        .mb-3
+          button.btn.btn-primary(type="submit") Save
+          | &nbsp;
+          a.btn.btn-outline-danger(href="/locations/"+location.id) Cancel

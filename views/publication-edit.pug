@@ -1,16 +1,17 @@
 extends layout 
 
 block content 
-
-  h1 Mise à jour de la publication
-  form(action="/publications/"+publication.id, method="post")
-    .mb-3
-      label.form-label(for="descriptionInput") Modifier le texte:
-      //- textarea(rows='10' cols='25') #{publication.description}
-      //- input#descriptionInput.form-control(type="text", name="description", value=publication.description)
-      textarea#description(type="text", name='description' value=publication.description rows='4' cols='50' maxlength='200')
-        | #{publication.description}
-    .mb-3
-      button.btn.btn-primary(type="submit") Save
-      | &nbsp;
-      a.btn.btn-outline-danger(href="/publications/"+publication.id) Cancel
+  body(style='background-color:powderblue;')
+    center()
+      h1 Mise à jour de la publication
+      form(action="/publications/"+publication.id, method="post")
+        .mb-3
+          label.form-label(for="descriptionInput") Modifier le texte:
+          //- textarea(rows='10' cols='25') #{publication.description}
+          //- input#descriptionInput.form-control(type="text", name="description", value=publication.description)
+          textarea#description(type="text", name='description' value=publication.description rows='4' cols='50' maxlength='200')
+            | #{publication.description}
+        .mb-3
+          button.btn.btn-primary(type="submit") Save
+          | &nbsp;
+          a.btn.btn-outline-danger(href="/publications/"+publication.id) Cancel

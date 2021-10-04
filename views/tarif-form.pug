@@ -1,43 +1,44 @@
 extends layout 
 
 block content 
-
-  h2 Entrer votre tarif 
- 
-  i.fa.fa-info-circle(aria-hidden='true')
-  |  Bienvenue !
-  p Enregistrez votre Tarif. 
-  
-  
-    form#form(action="/tarifs/create" method="post")
-      .mb-3
-        label.form-label(for="montantInput") Entrez le tarif de la place/min:
-        input#montantInput.form-control(type="text", name="montant") 
-      br
-      .mb-3
-        label.form-label(for="typeVehiculeIdSelect") typeVehicule:
-        select#typeVehiculeIdSelect(name="typeVehiculeId")
-          each typeVehicule in typeVehicules
-            option(value=typeVehicule.id) #{typeVehicule.nom} 
-      br
-      .mb-3
-        label.form-label(for="parkingIdSelect") Nombre de places dans le parking:
-        select#parkingIdSelect(name="parkingId")
-          each parking in parkings
-            option(value=parking.id) #{parking.nombrePlaces} 
-      br
-      .mb-3
-        label.form-label(for="traficIdSelect") trafic: 
-        select#traficIdSelect(name="traficId")
-          each trafic in trafics
-            option(value=trafic.id) #{trafic.nom} 
-      br
+  body(style='background-color:powderblue;')
+    center()
+      h2(style='text-transform: uppercase;') Entrer votre tarif 
+    
+      i.fa.fa-info-circle(aria-hidden='true')
+      |  Bienvenue !
+      p Enregistrez votre Tarif. 
       
-      .mb-3
-        button.btn.btn-primary(type="submit") Save
-          i.fa.fa-save
-        | &nbsp;
-        button.btn.btn-primary
-          a.btn.btn-outline-danger(href="/tarifs") Cancel
-          i.fa.fa-window-close
-        | &nbsp;
+      
+        form#form(action="/tarifs/create" method="post")
+          .mb-3
+            label.form-label(for="montantInput") Entrez le tarif de la place/min:
+            input#montantInput.form-control(type="text", name="montant") 
+          br
+          .mb-3
+            label.form-label(for="typeVehiculeIdSelect") typeVehicule:
+            select#typeVehiculeIdSelect(name="typeVehiculeId")
+              each typeVehicule in typeVehicules
+                option(value=typeVehicule.id) #{typeVehicule.nom} 
+          br
+          .mb-3
+            label.form-label(for="parkingIdSelect") Nombre de places dans le parking:
+            select#parkingIdSelect(name="parkingId")
+              each parking in parkings
+                option(value=parking.id) #{parking.nombrePlaces} 
+          br
+          .mb-3
+            label.form-label(for="traficIdSelect") trafic: 
+            select#traficIdSelect(name="traficId")
+              each trafic in trafics
+                option(value=trafic.id) #{trafic.nom} 
+          br
+          
+          .mb-3
+            button.btn.btn-primary(type="submit") Save
+              i.fa.fa-save
+            | &nbsp;
+            button.btn.btn-primary
+              a.btn.btn-outline-danger(href="/tarifs") Cancel
+              i.fa.fa-window-close
+            | &nbsp;

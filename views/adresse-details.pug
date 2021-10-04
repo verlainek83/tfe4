@@ -1,16 +1,19 @@
 extends layout
 
 block content
-              
-  h1 Details de l'adresse
+  body(style='background-color:powderblue;')
+    center()            
+      h1(style='text-transform: uppercase;') Details de l'adresse
 
-  p 
-    i Nom: 
-      b #{adresse.nom}
-  p 
-    i Numéro: 
-      b #{adresse.numero}
-  p Commune: #{adresse.commune.nom}
-    
-  a.nav-link(href="/adresses" class={active: currentUrl === "/adresses"}) 
-    button.btn.btn-outline-success(type='button') Faire une location?
+      p 
+        i Nom: 
+        b(style='color: #009688') #{adresse.nom}
+      p 
+        i Numéro: 
+        b(style='color: #009688') #{adresse.numero}
+      p 
+        i Commune: 
+        b(style='color: #009688') #{adresse.commune.nom}
+        
+      a.nav-link(href="/adresses" class={active: currentUrl === "/adresses"}) 
+        button.btn.btn-outline-success(type='button') Faire une location?

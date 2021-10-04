@@ -3,7 +3,7 @@ extends layout
 block content
 
   if user 
-      .menu-bar
+    .menu-bar
       ul
         li
           a(href="/adresses/create" class={active: currentUrl === "/adresses/create/new"}) 
@@ -14,7 +14,7 @@ block content
             i.fa.fa-ticket
             |  Faire une reservation
         li
-           a(href="/places" class={active: currentUrl === "/places"})
+           a(href="/roles" class={active: currentUrl === "/roles"})
             i.fa.fa-ticket
             |  Faire une location
         li
@@ -30,7 +30,7 @@ block content
               li
                 a(href='/account') Profil
               li
-                a(href='/mesReservations') Mes reservations
+                a(href='/users/:username') Mes reservations
               li
                 a(href='') Mes parkings
               li
@@ -64,18 +64,18 @@ block content
           td #{parking.user.nom} #{parking.user.prenom}
           td #{parking.user.telephone}
           td
-            a.btn.btn-sm.btn-outline-primary(href=`${parking.url}/details`, data-toggle="tooltip", title="Voir le parking")
+            a.btn.btn-sm.btn-outline-primary(href=`${parking.url}/details`, data-toggle="tooltip", title="Details du parking")
               svg(width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
                 path(fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z")
                 path(fill-rule="evenodd" d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z")
             | &nbsp;
             if user.can("editParking")
-              a.btn.btn-sm.btn-outline-success(href=`${parking.url}/`, data-toggle="tooltip", title="Edit")
+              a.btn.btn-sm.btn-outline-success(href=`${parking.url}/`, data-toggle="tooltip", title="Modifier")
                 svg.bi.bi-pencil(width='1em' height='1em' viewbox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
                   path(fill-rule='evenodd' d='M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z')
               | &nbsp;
             if user.can("deleteParking")
-              a.btn.btn-sm.btn-outline-danger(href=`${parking.url}/delete`, data-toggle="tooltip", title="Delete")
+              a.btn.btn-sm.btn-outline-danger(href=`${parking.url}/delete`, data-toggle="tooltip", title="Supprimer")
                 svg.bi.bi-trash(width='1em' height='1em' viewbox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
                   path(d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z')
                   path(fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z')

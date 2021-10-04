@@ -29,7 +29,7 @@ PlageHoraire.init({
     createdAt: false,
     updatedAt: false,
 });
-PlageHoraire.hasMany(Trafic, { foreignKey:'plageHoraireId', constraints: false, });
-Trafic.belongsTo(PlageHoraire, { as: 'plageH', foreignKey:'plageHoraireId', constraints: false, });
+// PlageHoraire.hasMany(Trafic, { foreignKey:'plageHoraireId', constraints: false, });
+// Trafic.belongsTo(PlageHoraire, { as: 'plageH', foreignKey:'plageHoraireId', constraints: false, });
 
 module.exports = PlageHoraire;

@@ -85,11 +85,8 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (username, done) => {
   try {
     // const user = await User.findOne({where:{username: username}}, {
-    //     include: { all: true, nested: true },
-    //   });
     const user = await User.findByPk(username, 
       {
-      // include: { all: true, nested: true },
       include: {
         model: Role,
         as: 'roles', 

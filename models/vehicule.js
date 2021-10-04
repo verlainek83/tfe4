@@ -32,9 +32,9 @@ Vehicule.init({
 });
 // création des associations entre les tables 
 //un vehicule a plusieurs locations
-// Vehicule.hasMany(Location);
-// //une location correspond à un seul vehicule 
-// Location.belongsTo(Vehicule);
+Vehicule.hasMany(Location);
+//une location correspond à un seul vehicule 
+Location.belongsTo(Vehicule);
 //un vehicule a plusieurs reservations
 Vehicule.hasMany(Reservation);
 //une reservation correspond à un seul vehicule

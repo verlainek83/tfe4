@@ -1,15 +1,16 @@
 extends layout
 
 block content
+  body(style='background-color:powderblue;')
+    center()
+      h1 Location
+      //- p Adresse: #{parking.adresse.nom}, #{parking.adresse.numero}
+      p Date de début #{location.date_Debut}
+      p Date de fin #{location.date_Fin}
+      p Heure de début #{location.heure_Debut}
+      p Heure de fin #{location.heure_Fin}
+      p Nom du locataire: #{location.userUsername}
 
-  h1 Location
-  //- p Adresse: #{parking.adresse.nom}, #{parking.adresse.numero}
-  p Date de début #{location.date_Debut}
-  p Date de fin #{location.date_Fin}
-  p Heure de début #{location.heure_Debut}
-  p Heure de fin #{location.heure_Fin}
-  p Nom du locataire: #{location.userUsername}
-
-  
-  a.nav-link(href="/locations" class={active: currentUrl === "/locations"}) 
-    button.btn.btn-outline-success(type='button') Faire une location?
+      
+      a.nav-link(href="/locations" class={active: currentUrl === "/locations"}) 
+        button.btn.btn-outline-success(type='button') Faire une location?

@@ -1,8 +1,9 @@
 extends layout 
 
 block content
-    if user
-            
+  if user
+    body(style='background-color:powderblue;')
+      center()    
         h2 Enregistrer votre véhicule
         form(action="/vehicules/create" method="post")
             label(for="heure_FinInput") Entrer l'immatriculation du véhicule:

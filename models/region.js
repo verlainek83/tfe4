@@ -11,8 +11,8 @@ class Region extends Model {
 }
 // definition de l'instance du modèle Region
 Region.init({
-    id: {type: DataTypes.INTEGER, unique: true, autoIncrement: true},
-    nom:{type:DataTypes.STRING, primaryKey:true, },
+    id: {type: DataTypes.INTEGER, primaryKey:true},
+    nom:{type:DataTypes.STRING, },
     // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,

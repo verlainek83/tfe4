@@ -1,29 +1,30 @@
 extends layout 
 
 block content 
-
-  h2 Enregistrer votre publication
-    form(action="/publications/create" method="post")
-        label(for="description") Entrer l'immatriculation du véhicule:
-            //- input.input-box(name='description' type='text' placeholder='Votre description' required='')
-        textarea#description(type="text", name='description' placeholder='Votre description' required='' rows='4' cols='50' maxlength='200')
-        |
-        br
-        .mb-3
-          //- label.form-label(for="userUsernameInput") Nom de l'utilisateur
-          //- select#userUsernameInput(name="userUsername" value=user.username)
-        //- each u in users
-          option(value=u.username) #{u.username}
-        label.form-label(for="userUsernameInput") Nom de l'utilisateur
-        input#userUsernameInput.form-control(type="text", name="userUsername", value=user.username)
-        br   
-            //- .mb-3
-            //- label.form-label(for="typeVehiculeId") Type de véhicule
-            //- select#typeVehiculeId(name="typeVehiculeId")
-            //-     each typeVehicule in typeVehicules
-            //-         option(value=typeVehicule.id) #{typeVehicule.nom}         
-        button.btn.btn-primary(type="submit") Save
-        br
-        br
-        button.btn.btn-primary
-            a.btn.btn-outline-danger(href="/publications") Cancel
+  body(style='background-color:powderblue;')
+    center()
+      h2 Enregistrer votre publication
+        form(action="/publications/create" method="post")
+          label(for="description") Entrer l'immatriculation du véhicule:
+              //- input.input-box(name='description' type='text' placeholder='Votre description' required='')
+          textarea#description(type="text", name='description' placeholder='Votre description' required='' rows='4' cols='50' maxlength='200')
+          |
+          br
+          .mb-3
+            //- label.form-label(for="userUsernameInput") Nom de l'utilisateur
+            //- select#userUsernameInput(name="userUsername" value=user.username)
+          //- each u in users
+            option(value=u.username) #{u.username}
+          label.form-label(for="userUsernameInput") Nom de l'utilisateur
+          input#userUsernameInput.form-control(type="text", name="userUsername", value=user.username)
+          br   
+              //- .mb-3
+              //- label.form-label(for="typeVehiculeId") Type de véhicule
+              //- select#typeVehiculeId(name="typeVehiculeId")
+              //-     each typeVehicule in typeVehicules
+              //-         option(value=typeVehicule.id) #{typeVehicule.nom}         
+          button.btn.btn-primary(type="submit") Save
+          br
+          br
+          button.btn.btn-primary
+              a.btn.btn-outline-danger(href="/publications") Cancel

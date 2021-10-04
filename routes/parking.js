@@ -25,8 +25,10 @@ router.get("/", async (req, res, next) => {
       return next(createError(403));
     }
     //recherche de toutes les Locations en fonction du nombre de places
-    const parkings = await Parking.findAll({order: ["nombrePlaces"],
-                                            include: ['adresse', User ]});
+    const parkings = await Parking.findAll({
+      order: ["nombrePlaces"],
+      include: [Adresse, User ]
+    });
     //Affichage de toutes les locations
     res.render("parkings", {
       title: "Liste des parkings",
@@ -56,7 +58,7 @@ router.get("/:id/details", async (req, res, next) => {
     const parkingId = req.params.id;
     //recherche du parking en fonction de la clé primaire
     const parking = await Parking.findByPk(parkingId, {
-                                          include: ['adresse', User ]});
+                                          include: [Adresse, User ]});
     const [adresses] = await Promise.all([ Adresse.findAll()]);
     const [users] = await Promise.all([ User.findAll()]);
     const [places] = await Promise.all([ Place.findAll()]);
@@ -149,7 +151,18 @@ router.get("/:id", async (req, res, next) => {
       next(error);
     }
   });
-//SUPPRESSION DU PARKING
+  //liste des parkings reservés
+  router.get("/parkings/:id/reservations", async(req, res, next) => {
+
+  });
+  //liste des parkings par id des reservations
+  router.get("/parking/:id/reservations/:idReservation", async(req, res, next) => {
+
+  });
+  //POST /parkings/:id/reservations
+  //PUT /parking/:id/reservations/:idReservation
+  //DELETE /parking/:id/reservations/:idReservation
+  //SUPPRESSION DU PARKING
 router.get("/:id/delete", async (req, res, next) => {
   try {
     //recuperation du user

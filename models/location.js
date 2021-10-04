@@ -2,7 +2,7 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("./db.js");
 const {DateTime} = require("luxon");
-const Vehicule = require("./vehicule");
+// const Vehicule = require("./vehicule");
 // Définition du modèle
 class Location extends Model {
     //création de l'adresse virtuelle 
@@ -36,9 +36,9 @@ Location.init({
     createdAt: false,
     updatedAt: false,
 });
-Location.hasMany(Vehicule);
-//une location correspond à un seul vehicule 
-Vehicule.belongsTo(Location);
+// Location.hasMany(Vehicule);
+// //une location correspond à un seul vehicule 
+// Vehicule.belongsTo(Location);
 
 //exportation du module
 module.exports = Location;

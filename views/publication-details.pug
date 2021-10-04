@@ -1,24 +1,25 @@
 extends layout
 
 block content
-
-  h1 Détails de la publication
-    //- p 
-    //-     i Nom: 
-    //-     b #{adresse.nom}
-    //- p 
-    //-     i Numéro: 
-    //-     b #{adresse.numero}
-    //- p Commune: #{adresse.commune.nom}
-    
-  p 
-    i  Publication de :
-    b(style='text-transform: uppercase;')  #{publication.userUsername}
-  textarea(rows='10' cols='25') #{publication.description}
-  p
-    a.nav-link(href="/vehicules/create" class={active: currentUrl === "/vehicules/create/new"}) 
-    button.btn.btn-outline-success(type='button') Faire une réservation?
-  p OU
-  p
-    a.nav-link(href="/locations" class={active: currentUrl === "/locations"}) 
-    button.btn.btn-outline-success(type='button') Faire une location?
+  body(style='background-color:powderblue;')
+    center()
+      h1 Détails de la publication
+        //- p 
+        //-     i Nom: 
+        //-     b #{adresse.nom}
+        //- p 
+        //-     i Numéro: 
+        //-     b #{adresse.numero}
+        //- p Commune: #{adresse.commune.nom}
+        
+      p 
+        i  Publication de :
+        b(style='text-transform: uppercase;')  #{publication.userUsername}
+      textarea(rows='10' cols='25') #{publication.description}
+      p
+        a.nav-link(href="/vehicules/create" class={active: currentUrl === "/vehicules/create/new"}) 
+        button.btn.btn-outline-success(type='button') Faire une réservation?
+      p OU
+      p
+        a.nav-link(href="/locations" class={active: currentUrl === "/locations"}) 
+        button.btn.btn-outline-success(type='button') Faire une location?
