@@ -40,7 +40,7 @@ block content
         //-     label.form-label(for="numeroImmatriculationInput") immatriculation du véhicule
         //-     input#numeroImmatriculationInput.form-control(type="text", name="numeroImmatriculation", value=vehicule.numeroImmatriculation)
         .mb-3
-            label.form-label(for="vehiculeId") Type de véhicule
+            label.form-label(for="vehiculeId") Immatriculation du véhicule
             select#vehiculeId(name="vehiculeId")
                 each vehicule in vehicules
                     option(value=vehicule.id) #{vehicule.numero_immatriculation}
@@ -50,8 +50,8 @@ block content
                 each place in places
                     option(value=place.id) #{place.dimension} 
         .mb-3 
-          label.form-label(for="userUsernameInput") Nom de l'utilisateur
-          input#userUsernameInput.form-control(type="text", name="userUsername", value=user.username)
+          label.form-label(for="userIdInput") Id de l'utilisateur
+          input#userIdInput.form-control(type="text", name="userId", value=user.id)
         .mb-3
           button.btn.btn-primary(type="submit") Save
           | &nbsp;

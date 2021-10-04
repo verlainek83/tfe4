@@ -227,6 +227,15 @@ router.get("/reset", async (req, res) => {
       }
     )
 });
+
+//reservation of client requests
+router.get("/users/:userId/reservations/:reservationId", function (req, res) {
+  // Access userId via: req.params.userId
+  // Access bookId via: req.params.bookId
+  res.send(req.params);
+})
+
+
 //Deconnexion
 router.get("/logout", (req, res, next) => {
   req.logout();

@@ -14,7 +14,7 @@ block content
         
       p 
         i  Publication de :
-        b(style='text-transform: uppercase;')  #{publication.userUsername}
+        b(style='text-transform: uppercase;')  #{publication.user.username}
       textarea(rows='10' cols='25') #{publication.description}
       p
         a.nav-link(href="/vehicules/create" class={active: currentUrl === "/vehicules/create/new"}) 

@@ -726,105 +726,105 @@ console.log(
   //remplissage de la table publication
   await Publication.bulkCreate([
     { description: ["Bonjour, je mets à votre disposition ma place qui est située sur le trottoir" ],
-      userUsername:"verly",
+      userId:1,
     },
     { description: ["Bonjour, je mets à votre disposition ma place un parking privé" ],
-      userUsername:"elodie",
+      userId:12,
     },
     { description: ["Bonjour, je mets à votre disposition ma place dans box de garage" +
     ", avec camera de surveillance 24h/24" ],
-      userUsername:"andre",
+      userId:7
     },
     { description: ["Bonjour, je mets à votre disposition plusieurs places dans" +
     "dans le parking de mon immeuble" ],
-      userUsername:"arthur",
+      userId:7,
     },
     { description: ["Bonjour, je mets à votre disposition ma place qui est située dans" +
     " le centre de la ville" ],
-      userUsername:"olga",
+      userId:20,
     },
   ]);
   //remplissage de la table parking
 await Parking.bulkCreate([
   {
     nombrePlaces: 1,
-    userUsername:"elodie",
+    userId:12,
     adresseId: 1,
   },
   {
     nombrePlaces: 2,
-    userUsername:"arthur",
+    userId:7,
     adresseId: 2,
   },
   {
     nombrePlaces: 9,
-    userUsername:"andre",
+    userId:4,
     adresseId: 3,
   },
   {
     nombrePlaces: 4,
-    userUsername:"olga",
+    userId:20,
     adresseId: 4,
   },
   {
     nombrePlaces: 3,
-    userUsername:"elodie",
+    userId:14,
     adresseId: 5,
     
   },
   {
     nombrePlaces: 5,
-    userUsername:"remy",
+    userId:14,
     adresseId: 10,
   },
   {
     nombrePlaces:6,
-    userUsername:"tanty",
+    userId:10,
     adresseId: 6,
   },
   {
     nombrePlaces: 7,
-    userUsername:"vero",
+    userId:15,
     adresseId: 7,
   },
   {
     nombrePlaces: 8,
-    userUsername:"vero",
+    userId:15,
     adresseId:8,
   },
   {
     nombrePlaces: 10,
-    userUsername:"remy",
+    userId:14,
     adresseId: 9,
   },
   {
     nombrePlaces: 14,
-    userUsername:"tanty",
+    userId:10,
     adresseId: 10,
   },
   {
     nombrePlaces: 24,
-    userUsername:"olga",
+    userId:20,
     adresseId: 11,
   },
   {
     nombrePlaces: 10,
-    userUsername:"elodie",
+    userId:12,
     adresseId: 12,
   },
   {
     nombrePlaces: 24,
-    userUsername:"christine",
+    userId:16,
     adresseId:13 ,
   },
   {
     nombrePlaces: 19,
-    userUsername:"arthur",
+    userId:7,
     adresseId:14,
   },
   {
     nombrePlaces: 20,
-    userUsername:"andre",
+    userId:4,
     adresseId: 16,
   },
   ]);
@@ -988,7 +988,7 @@ const [a, b, c, d, e, f, g, h, i, j, k, l] = await Place.bulkCreate([
     validationReservation:  true ,
     vehiculeId:1,
     placeId:3,
-    userUsername:"marie",
+    userId:3,
   },
   {
     codeReservation: "2021-03-01T08:00:00.000Z",
@@ -1000,7 +1000,7 @@ const [a, b, c, d, e, f, g, h, i, j, k, l] = await Place.bulkCreate([
     validationReservation:  true,
     vehiculeId:2,
     placeId:2,
-    userUsername:"manou",
+    userId:18,
   },
   {
     codeReservation: "2021-02-01T08:02:11.000Z",
@@ -1012,7 +1012,7 @@ const [a, b, c, d, e, f, g, h, i, j, k, l] = await Place.bulkCreate([
     validationReservation:  true ,
     vehiculeId:3,
     placeId:1,
-    userUsername:"louis",
+    userId:8,
   },
   ]);
   //remplissage de la table location
@@ -1024,7 +1024,7 @@ const [a, b, c, d, e, f, g, h, i, j, k, l] = await Place.bulkCreate([
     heure_Fin: '06:45',   
     validationLocation: true,
     vehiculeId:11,
-    userUsername:"parfait",
+    userId:2,
     placeId:5,
   },
   {
@@ -1034,7 +1034,7 @@ const [a, b, c, d, e, f, g, h, i, j, k, l] = await Place.bulkCreate([
     heure_Fin: '16:45',   
     validationLocation: true, 
     vehiculeId:12,
-    userUsername:"rachel",
+    userId:19,
     placeId:4,
   },
   {
@@ -1044,7 +1044,7 @@ const [a, b, c, d, e, f, g, h, i, j, k, l] = await Place.bulkCreate([
     heure_Fin: '22:10',   
     validationLocation: false, 
     vehiculeId:13,
-    userUsername:"romuald",
+    userId:11,
     placeId:3,
   },
   {
@@ -1054,7 +1054,7 @@ const [a, b, c, d, e, f, g, h, i, j, k, l] = await Place.bulkCreate([
     heure_Fin: '05:10',   
     validationLocation: false, 
     vehiculeId:14,
-    userUsername:"ron",
+    userId:9,
     placeId:2,
   },
   {
@@ -1064,7 +1064,7 @@ const [a, b, c, d, e, f, g, h, i, j, k, l] = await Place.bulkCreate([
     heure_Fin: '12:30',   
     validationLocation: true, 
     vehiculeId:15,
-    userUsername:"manou",
+    userId:18,
     placeId:1,
   },
   ]);

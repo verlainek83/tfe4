@@ -11,14 +11,14 @@ class Permission extends Model {get url() {
 }
 Permission.init(
   {
-    id: { type: DataTypes.INTEGER, autoIncrement:true, unique: true,},
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement:true,},
     name: {
       type: DataTypes.STRING,
-      primaryKey: true,
+      unique: true,
     },
   },
   { sequelize, modelName: "permission" ,
-  createdAt: false,
+    createdAt: false,
     updatedAt: false,
   }
 );
@@ -28,10 +28,10 @@ class Role extends Model {get url() {
 }
 Role.init(
   {
-    id: { type: DataTypes.INTEGER, autoIncrement:true, unique: true,},
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement:true,},
     name: {
       type: DataTypes.STRING,
-      primaryKey: true,
+      unique: true,
     },
   },
   { sequelize, modelName: "role" , 
@@ -75,19 +75,19 @@ User.init(
 }
 );
 
-User.belongsToMany(Role, { through: 'user_roles'});
-Role.belongsToMany(User, { through: 'user_roles'});
+User.belongsToMany(Role, { through: 'user_roles', foreignKey: 'userUsername'});
+Role.belongsToMany(User, { through: 'user_roles', foreignKey: 'roleId'});
 
-User.hasMany(Publication);
-Publication.belongsTo(User);
+User.hasMany(Publication, {foreignKey: 'userId', sourceKey: 'id'});
+Publication.belongsTo(User, {targetKey:'id', foreignKey: 'userId'});
 
-User.hasMany(Parking);
-Parking.belongsTo(User);
+User.hasMany(Parking, {foreignKey: 'userId', sourceKey: 'id'});
+Parking.belongsTo(User, {targetKey:'id', foreignKey: 'userId'});
 
-User.hasMany(Reservation);
-Reservation.belongsTo(User);
+User.hasMany(Reservation, {foreignKey: 'userId', sourceKey: 'id'});
+Reservation.belongsTo(User, {targetKey:'id', foreignKey: 'userId'});
 
-User.hasMany(Location);
-Location.belongsTo(User);
+User.hasMany(Location, {foreignKey: 'userId', sourceKey: 'id'});
+Location.belongsTo(User, {targetKey:'id', foreignKey: 'userId'});
 
 module.exports = { User, Role, Permission };

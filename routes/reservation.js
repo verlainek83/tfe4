@@ -124,7 +124,7 @@ router.post("/create", async(req, res, next) =>
             validationReservation: req.body.validationReservation,
             vehiculeId: req.body. vehiculeId,
             placeId: req.body.placeId,
-            userUsername: req.body.userUsername,
+            userId: req.body.userId,
 
           },
       });
