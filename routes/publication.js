@@ -91,11 +91,11 @@ router.post("/create", async(req, res, next) =>
       const [publication, created] = await Publication.findOrCreate({
           where: { 
             description: req.body.description,
-            userUsername: req.body.userUsername,
+            userId: req.body.userId,
           },
       });
       //affichage de la liste des publications
-      res.redirect("/publications");
+      res.redirect("/places/create");
   } catch (error) {
       next(error);
   }

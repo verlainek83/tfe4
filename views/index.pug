@@ -197,7 +197,7 @@ block content
     .menu-bar
       ul
         li
-          a(href="/adresses/create" class={active: currentUrl === "/adresses/create/new"}) 
+          a(href="/users" class={active: currentUrl === "/users"}) 
             i.fa.fa-save
             |  Enregistrer son parking
         li
@@ -221,9 +221,9 @@ block content
               li
                 a(href='/account') Profil
               li
-                a(href='/users') Mes reservations
+                a(href='/reservations/:userId') Mes reservations
               li
-                a(href='') Mes parkings
+                a(href='parkings/:userId') Mes parkings
               li
                 a(href='') Dashboard
         li

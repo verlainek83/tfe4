@@ -24,8 +24,9 @@ router.get("/", async (req, res, next) => {
         return next(createError(403));
       }
       //recherche de toutes les place de parking en fonction de la description et de la dimension
-      const places = await Place.findAll({ order: ["description", "dimension"],
-                                           include: ['parking']});
+      const places = await Place.findAll({ 
+        order: ["description", "dimension"],
+        include: Parking});
       //Affichage de toutes les places
       res.render("places", {
         title: "Liste des places",
@@ -84,6 +85,7 @@ router.get("/create", async(req, res, next) => {
         next(error);
     }
 });
+
 //CREATION D'UNE NOUVELLE PLACE DE PARKING: POST
 router.post("/create", async(req, res, next) =>
 {
@@ -94,16 +96,16 @@ router.post("/create", async(req, res, next) =>
           where: { 
             description: req.body.description,
              dimension: req.body. dimension,
-             parkingId: req.body.parkingId,
-             
+             parkingId: req.body.parkingId,   
           },
       });
       //affichage de la liste des places
-      res.redirect("/tarifs/create");
+      res.redirect("/publications/create");
   } catch (error) {
       next(error);
   }
 });
+
 //MISE A JOUR DE LA Place: GET
 router.get("/:id", async(req, res, next) => {
   console.log('details')
@@ -129,6 +131,7 @@ router.get("/:id", async(req, res, next) => {
       next(error);
   }
 });
+
 //MISE A JOUR DE LA PLACE DE PARKING: POST
 router.post("/:id", async(req, res, next) => {
   try {

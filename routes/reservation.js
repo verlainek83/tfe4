@@ -133,23 +133,7 @@ router.post("/create", async(req, res, next) =>
       next(error);
   }
 });
- //SUPPRESSION D'UNE RESERVATION: POST 
-  router.get("/:id/delete", async (req, res, next) => {
-    try {
-      const user = req.user;
-      if (!user) {
-        return res.redirect("/login");
-      }
-      if (!user.can("deleteReservation")) {
-        return next(createError(403));
-      }
-      const reservationId = req.params.id;
-      const reservation = await Reservation.destroy({ where: { id: reservationId } });
-      res.redirect("/reservations");
-    } catch (error) {
-      next(error);
-    }
-  });
+ 
  //MISE A JOUR D'UNE RESERVATION: GET
   router.get("/:id", async (req, res, next) => {
     try {
@@ -184,5 +168,130 @@ router.post("/create", async(req, res, next) =>
       next(error);
     }
   });
+
+  //affichage des resevations valideés
+  router.get("/:id/:validationReservation", async(req, res, next) => {
+    try {
+      const user = req.user;
+      if (!user) {
+        return res.redirect("/login");
+      }
+      // if (!user.can("editReservation")) {
+      //   return next(createError(403));
+      // }
+      const reservationId = req.params.id;
+      
+      if (req.user.roles[0].name === 'manager' || req.user.roles[0] === 'proprietaire') {
+        const validationRes = req.params.validationReservation;
+        const reservations = await Reservation.findAll({
+          where: { validationReservation: validationRes},
+          include: User,
+        });
+      }      
+      res.render("reservation-form", { title: "Edit reservation", user, reservations });
+    } catch (error) {
+      next(error);
+    }
+  });
+
+//LISTE DES RESERVATIONS APPARTENANT AU PARKING AYANT CET ID
+router.get("/:placeId", async(req, res, next) => {
+  try {
+    const user = req.user;
+    //vérification s'il y a un utilisateur connecté, sinon renvoie a la page de connection
+    if (!user) {
+      return res.redirect("/login");
+    }
+    //vérification si l'utilisateur a le droit de voir le détail des places, 
+    //si ne n'est pas le cas alors affichage de l'erreur 403
+    if (!user.can("viewReservationDetails")) {
+      return next(createError(403));
+    }
+    //récupraion de l'id de la place
+    const placeId = req.params.placeId;
+    console.log(placeId);
+    //recherche du parking en fonction de la clé étrangère
+    const parkings = await Parking.findAll({
+      where: { 
+        placeId: placeId },
+      include: [ User, Place, Vehicule ]
+    });
+    console.log([parkings]);
+    const [users] = await Promise.all([ User.findAll()]);
+    const [places] = await Promise.all([Place.findAll()]);
+    const [vehicules] = await Promise.all([Vehicule.findAll()]);
+    //Affichage des détails de la place en tenant compte des parkings
+    res.render("mesParkings", { title:'mes p', user, parkings, users, places, vehicules});
+  } catch (error) {
+    next(error);
+  }
+});
+
+//DETAIL DE LA RESERVATION APPARTENANT AU PARKING AYANT CET ID
+  router.get("/:id/:placeId", async(req, res, next) => {
+
+  });
+
+// reservations par utilisateurs
+router.get("/:userId", async (req, res) => {
+  const user = req.user;
+  const userId = req.params.userId;
+  const reservations = await reservations.findAll({
+    where: { userId: userId},
+    include: User,
+  });
+  const users = await User.findAll();
+
+  res.render("mesReservations", {
+    title: "Role list",
+    user,
+    reservations,
+    users,
+    currentUrl: req.originalUrl,
+  });
+});
+
+//reservation of client requests
+router.get("/:id/:userId", async (req, res) => {
+  // Access userId via: req.params.userId
+  // Access bookId via: req.params.bookId
+  const user = req.user;
+  const userId = req.params.userId;
+  const reservationId = req.params.id;
+  const reservations = await reservations.findByPk(reservationId, {
+    where: { userId: userId},
+    include: User,
+  });
+  const users = await User.findAll();
+  // res.send(req.params);
+  res.render("mesReservationsde", {
+    title: "Role list",
+    user,
+    reservations,
+    users,
+    currentUrl: req.originalUrl,
+});
+});
+  //POST /parkings/:id/reservations
+  //PUT /parking/:id/reservations/:idReservation
+  //DELETE /parking/:id/reservations/:idReservation
+
+//SUPPRESSION D'UNE RESERVATION: POST 
+router.get("/:id/delete", async (req, res, next) => {
+  try {
+    const user = req.user;
+    if (!user) {
+      return res.redirect("/login");
+    }
+    if (!user.can("deleteReservation")) {
+      return next(createError(403));
+    }
+    const reservationId = req.params.id;
+    const reservation = await Reservation.destroy({ where: { id: reservationId } });
+    res.redirect("/reservations");
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;

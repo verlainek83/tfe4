@@ -39,25 +39,26 @@ block content
             i.fa.fa-sign-out
             |  Se d&eacute;connecter
     //- p Hello, #{user.username}, good to see you!
-    p Bonjour, 
-      b #{user.username}, 
-        i Cela fait plaisir de te revoir!
-    p Bienvenue sur Placetopark
-    h1 Tes informations
-    table.table
-      thead
-        tr
-          th(scope="col") Nom
-          th(scope="col") Prénom
-          th(scope="col") Telephone
-          th(scope="col") Adresse mail
-          th(scope="col") Role
-      tbody
-        tr
-          td= user.nom
-          td= user.prenom
-          td= user.telephone
-          td= user.usermail
-          //- td= user.role.name
+    center()
+      p Bonjour, 
+        b #{user.username}, 
+          i Cela fait plaisir de te revoir!
+      p Bienvenue sur Placetopark
+      h1 Tes informations
+      table.table(style='background-color:powderblue; border-collapse: collapse; border: 1px solid black;')
+        thead
+          tr
+            th(style='border: 1px solid black;')(scope="col") username
+            th(style='border: 1px solid black;')(scope="col") Nom
+            th(style='border: 1px solid black;')(scope="col") Prénom
+            th(style='border: 1px solid black;')(scope="col") Telephone
+            th(style='border: 1px solid black;')(scope="col") Email
+        tbody
+          tr
+            td(style='border: 1px solid black;')= user.username
+            td(style='border: 1px solid black;')= user.nom
+            td(style='border: 1px solid black;')= user.prenom
+            td(style='border: 1px solid black;')= user.telephone
+            td(style='border: 1px solid black;')= user.usermail
   else
     p Please log in...

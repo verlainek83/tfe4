@@ -41,6 +41,7 @@ const traficRouter = require("./routes/trafic");
 const plageHoraireRouter = require("./routes/plageHoraire");
 const dashboardRouter = require("./routes/dashboard"); 
 const roleRouter = require("./routes/index");
+const userRouter = require("./routes/index");
 
 const app = express();
 
@@ -123,6 +124,7 @@ app.use(function(req, res, next){
   next();
 });
 app.use("/roles", roleRouter);
+app.use("/users", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

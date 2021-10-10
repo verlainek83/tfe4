@@ -145,7 +145,8 @@ router.post("/:id", async(req, res, next) => {
       next(error);
   }
 });
-//SUPPRESSION D'UNE TypeVehicule DE PARKING  
+
+//SUPPRESSION D'UN TypeVehicule  
 router.get("/:id/delete", async (req, res, next) => {
     try {
        //recuperation du user
@@ -168,6 +169,7 @@ router.get("/:id/delete", async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  });
+});
+
 //exportation du router 
 module.exports = router;

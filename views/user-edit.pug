@@ -4,11 +4,11 @@ block content
   body(style='background-color:powderblue;')
     center()
       h1(style='text-transform: uppercase;')= nombrePlaces
-      form(action="/parkings/"+parking.id, method="post")
+      form(action="/users/"+user.id, method="post")
         .mb-3
-          label.form-label(for="nombrePlacesInput") Nombre de places:
-          input#nombrePlacesInput.form-control(type="text", name="nombrePlaces", value=parking.nombrePlaces)
+          label.form-label(for="usernameInput") login:
+          input#usernameInput.form-control(type="text", name="username", value=user.username)
         .mb-3
           button.btn.btn-primary(type="submit") Save
           | &nbsp;
-          a.btn.btn-outline-danger(href="/parkings/"+parking.id) Cancel
+          a.btn.btn-outline-danger(href="/users/"+user.id) Cancel

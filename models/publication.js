@@ -12,8 +12,16 @@ class Publication extends Model {
 //création de l'instance du modèle
 Publication.init({
     // Definition des attributs 
-    id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true, unique: true,}, 
-    description:{type:DataTypes.STRING, allowNull: false },
+    id: {
+        type: DataTypes.INTEGER, 
+        primaryKey:true, 
+        autoIncrement: true, 
+        unique: true,
+    }, 
+    description:{
+        type:DataTypes.STRING, 
+        allowNull: false 
+    },
     // managerOnly: { type: DataTypes.BOOLEAN, defaultValue: false },
 }, {
     sequelize,

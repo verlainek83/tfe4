@@ -54,16 +54,101 @@ class User extends Model {
       });
     });
   }
+
+  get url() {
+    return `/users/${this.id}`;
+  }
 }
 
 User.init(
-  { id: { type: DataTypes.INTEGER, autoIncrement:true, unique: true,},
-    username: { type: DataTypes.STRING, primaryKey: true,},
-    passwordHash: DataTypes.STRING,
-    usermail: DataTypes.STRING,
-    nom: DataTypes.STRING,
-    prenom: DataTypes.STRING,
-    telephone: DataTypes.STRING,
+  { 
+    id: { 
+      type: DataTypes.INTEGER, 
+      autoIncrement:true, 
+      unique: true,
+      myId: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return `${this.id}`;
+        },
+        set(value) {
+          throw new Error('Do not try to set the `myId` value!');
+        }
+      }
+    },
+    username: { 
+      type: DataTypes.STRING, 
+      primaryKey: true,
+      login: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return `${this.username}`;
+        },
+        set(value) {
+          throw new Error('Do not try to set the `login` value!');
+        }
+      }
+    },
+    passwordHash: {
+      type: DataTypes.STRING,
+      pw: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return `${this.passwordHash}`;
+        },
+        set(value) {
+          throw new Error('Do not try to set the `pw` value!');
+        }
+      }
+    },
+    usermail: {
+      type:DataTypes.STRING,
+      myMail: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return `${this.usermail}`;
+        },
+        set(value) {
+          throw new Error('Do not try to set the `myMail` value!');
+        }
+      }
+    },
+    nom: {
+      type:DataTypes.STRING,
+      myNom: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return `${this.nom}`;
+        },
+        set(value) {
+          throw new Error('Do not try to set the `myNom` value!');
+        }
+      }
+    },
+    prenom: {
+      type:DataTypes.STRING, 
+      myPrenom: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return `${this.prenom}`;
+        },
+        set(value) {
+          throw new Error('Do not try to set the `myPrenom` value!');
+        }
+      }
+    },
+    telephone: {
+      type:DataTypes.STRING,
+      myPhone: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return `${this.telephone}`;
+        },
+        set(value) {
+          throw new Error('Do not try to set the `myPhone` value!');
+        }
+      }
+    },
   },
   { sequelize, modelName: "user" ,
   // indexes: [{

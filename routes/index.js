@@ -5,6 +5,8 @@ const session = require("express-session");
 const bcrypt = require("bcrypt");
 const {User, Role} = require("../models/User");
 const Adresse = require("../models/adresse");
+const { Op } = require("sequelize");
+const createError = require('http-errors');
 
 const saltRounds = 10;
 
@@ -57,73 +59,7 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-//get users page
-router.get("/users", async (req, res) => {
-  const user = req.user;
-  const users = await User.findAll(
-    {include: Adresse}
-  );
-  res.render('listUsers', { 
-    title: "Liste des users", 
-    users, 
-    user, 
-    currentUrl: req.originalUrl,});
-  
-});
-
-//details user 
-router.get("/:id/details", async (req, res, next) => {
-  try {
-    //récupération du user
-    // const user = req.user;
-    //vérification s'il y a un utilisateur connecté, sinon renvoie a la page de connection
-    if (!user) {
-      return res.redirect("/login");
-    }
-    //vérification si l'utilisateur a le droit de voir le détail des parkings, 
-    //si ne n'est pas le cas alors affichage de l'erreur 403
-    if (!user.can("viewUserDetails")) {
-      return next(createError(403));
-    }
-    //récupération de l'id de la location
-    const userId = req.params.id;
-    //recherche du parking en fonction de la clé primaire
-    const user = await User.findOne(
-      { where: { id: userId } },{
-      include: Adresse}
-      );
-    const [adresses] = await Promise.all([ Adresse.findAll()]);
-    const [users] = await Promise.all([ User.findAll()]);
-    //Affichage des détails du parking en tenant compte des adresse et des utilisateurs
-    res.render("user-details", { title: parking.nom, user, adresses, users,});
-  } catch (error) {
-    next(error);
-  }
-});
-
-//AFFICHAGE DU PROFIL DE L'UTILISATEUR
-router.get('/account', function(req, res, next) {
-
-  //here it is
-  var user = req.user;
-  const roles = Role.findAll();
-
-  //you probably also want to pass this to your view
-  res.render('account', { title: 'account', user: user, roles });
-});
-
-//AFFICHAGE Des parkings du propriétaire
-router.get('/mesParkings', function(req, res, next) {
-
-  //here it is
-  var user = req.user;
-
-  //you probably also want to pass this to your view
-  res.render('mesParkings', { title: 'Mes Parkings', user: user });
-});
-
 //CREATION D'UN NOUVEL UTILISATEUR: GET
-//router.get("/signup", async (req, res) => {
 router.get("/signup", async (req, res) => {
   const passwordMismatch = req.session.passwordMismatch;
   const compteCree = req.session.compteCree;
@@ -167,14 +103,18 @@ router.post("/signup", (req, res, next) => {
     let clientRole;
     let proprietaireRole;
     try {
-        clientRole = await Role.findOne({ where: { name: "client" } });
-        proprietaireRole = await Role.findOne({ where: { name: "proprietaire"}});
+        clientRole = await Role.findOne({ 
+          where: { name: "client" } });
+        proprietaireRole = await Role.findOne({ 
+          where: { name: "proprietaire"}});
     } catch (error) {
         req.session.compteCree = false;
         return res.redirect("/login");
     }
     
     console.log('clientRole', JSON.stringify(clientRole));
+    console.log('proprietaireRole', JSON.stringify(proprietaireRole));
+
     if ( req.body.roleName === "client") {
       await Promise.all([
         newUser.setRoles([clientRole])
@@ -188,29 +128,6 @@ router.post("/signup", (req, res, next) => {
     req.session.compteCree = true;
     return res.redirect("/login");
   })(req, res, next);
-});
-//AFFICHAGE DE LA LISTE DES ROLES: GET
-router.get("/roles", async(req, res, next) => {
-  try {
-      const user = req.user;
-      if (!user) {
-          return res.redirect("/login");
-      }
-      if (!user.can("listRoles")) {
-          return next(createError(403));
-      }
-      const roles = await Role.findAll({
-          order: ["name"],
-      });
-      res.render("roles", {
-          title: "Role list",
-          roles,
-          user,
-          currentUrl: req.originalUrl,
-      });
-  } catch (error) {
-      next(error);
-  }
 });
 
 //RESET PASSWORD
@@ -228,23 +145,153 @@ router.get("/reset", async (req, res) => {
     )
 });
 
-//reservation of client requests
-router.get("/users/:userId/reservations/:reservationId", function (req, res) {
-  // Access userId via: req.params.userId
-  // Access bookId via: req.params.bookId
-  res.send(req.params);
-})
+//get users page
+router.get("/users", async (req, res) => {
+  const user = req.user;
+  const users = await User.findAll(
+    {include: Adresse, Role}
+  );
+  res.render('users', { 
+    title: "Liste des users", 
+    user, 
+    users, 
+    currentUrl: req.originalUrl,});
+  
+});
 
+//AFFICHAGE DU PROFIL DE L'UTILISATEUR
+// router.get('/account', function(req, res, next) {
+
+//   //here it is
+//   var user = req.user;
+//   // const roles = Role.findAll();
+
+//   //you probably also want to pass this to your view
+//   res.render('account', { title: 'account', user: user });
+// });
+
+//details user 
+// router.get("/:username/details", async (req, res, next) => {
+//   try {
+//     //récupération du user
+//     const user = req.user;
+//     //vérification s'il y a un utilisateur connecté, sinon renvoie a la page de connection
+//     // if (!user) {
+//     //   return res.redirect("/login");
+//     // }
+//     //vérification si l'utilisateur a le droit de voir le détail des locations, 
+//     //si ne n'est pas le cas alors affichage de l'erreur 403
+//     if (!user.can("viewUserDetails")) {
+//       return next(createError(403));
+//     }
+//     //récupération de l'id de la location
+//     const userId = req.params.username;
+//     //recherche de la location en fonction de la clé primaire
+//     const useer = await User.findByPk(userId, {include: [Adresse, Role]});
+//     // const useer = await User.findAll({
+//     //   where: {  
+//     //      username: username ,
+//     //   },
+//     //   include: Adresse
+//     // });
+//     const adresses = await Promise.all([ Adresse.findAll()]);  
+//     const roles = await Promise.all([roles.findAll()]);
+//     //Affichage des détails de la location en tenant compte de la table adresse
+//     res.render("user-details", { title:'details du user', user, useer, adresses, roles});
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+// //MISE A JOUR DU USER: GET
+// router.get("/:username", async (req, res, next) => {
+//   try {
+//     //recupération du user
+//     const user = req.user;
+//     //vérification s'il y a un utilisateur connecté, sinon renvoie a la page de connection
+//     if (!user) {
+//       return res.redirect("/login");
+//     }
+//     //vérification si l'utilisateur a le droit de modifier des communes, 
+//     //si ne n'est pas le cas alors affichage de l'erreur 403
+//     if (!user.can("editUser")) {
+//       return next(createError(403));
+//     }
+//     //recupération de l'id de la commuune
+//     const userId = req.params.username;
+//     //recherche d'une commune en fonction de la clé primaire
+//     const useer = await User.findByPk(userId);
+//     //affichage de la page de modification
+//     res.render("user-edit", { title: "Edit user", user, useer });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+// //MISE A JOUR DU USER: Post
+// router.post("/:username", async (req, res, next) => {
+//   try {
+//     //récupération du user
+//     const user = req.user;
+//      //vérification s'il y a un utilisateur connecté, sinon renvoie a la page de connection
+//     if (!user) {
+//       return res.redirect("/login");
+//     }
+//     //vérification si l'utilisateur a le droit de modifier les communes, 
+//     //si ne n'est pas le cas alors affichage de l'erreur 403
+//     if (!user.can("editUser")) {
+//       return next(createError(403));
+//     }
+//     //recupération de l'id de la commune
+//     const userId = req.params.username;
+//     console.log(userId);
+//     //mise à jour de la commune en fonction de son USERNAME
+//     await User.update(req.body, { where: { username: userId } });
+//     //redirection ou renvoie vers la page de la liste des communes
+//     res.redirect("/users");
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+//DETAILS DU USER / ACCOUNT DETAILS
+router.get("/:username/details", async (req, res) => {
+  try {
+    const user = await User.findByPk(username, {
+      include: [Role, Adresse]});
+    // if(user) {
+    //   res.json({
+    //     id: user.id,
+    //     username: user.username,
+    //     username: user.usermail,
+    //     nom: user.nom,
+    //     prenom: user.prenom,
+    //     telephone: user.telephone,
+    //     adresseId: user.adresseId,
+    //   })
+    // } 
+    const adresses = await Promise.all([ Adresse.findAll()]);  
+    const roles = await Promise.all([roles.findAll()]);
+    res.render("account", {
+      title: 'account', 
+      user: user,
+      adresses,
+      roles,
+      currentUrl: req.originalUrl,
+  });
+  }catch (error) {
+    next(error)}
+});
 
 //Deconnexion
 router.get("/logout", (req, res, next) => {
   req.logout();
   req.session.regenerate((err) => {
-    if (!err) {
-      res.redirect("/");
-    } else {
-      next(err);
-    }
+      if (!err) {
+          res.redirect("/");
+      } else {
+          next(err);
+      }
   });
 });
 

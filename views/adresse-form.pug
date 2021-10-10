@@ -21,7 +21,7 @@ block content
             input#nuImeronput.form-control(type="number", name="numero")
           br
           .mb-3
-            label.form-label(for="communeId") Type de véhicule: 
+            label.form-label(for="communeId") Commune: 
             select#communeId(name="communeId")
               each commune in communes
                 option(value=commune.id) #{commune.nom}, #{commune.codePostal}
