@@ -255,7 +255,7 @@ router.get("/users", async (req, res) => {
 // });
 
 //DETAILS DU USER / ACCOUNT DETAILS
-router.get("/:username/details", async (req, res) => {
+router.get("/:username/details", async (req, res, next) => {
   try {
     const user = await User.findByPk(username, {
       include: [Role, Adresse]});
