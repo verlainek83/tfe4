@@ -146,7 +146,7 @@ router.post("/create", async(req, res, next) =>
       }
       const reservationId = req.params.id;
       const reservation = await Reservation.findByPk(reservationId);
-      res.render("reservation-form", { title: "Edit reservation", user, reservation });
+      res.render("reservation-edit", { title: "Edit reservation", user, reservation });
     } catch (error) {
       next(error);
     }
