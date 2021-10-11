@@ -13,12 +13,12 @@ const saltRounds = 10;
 /* GET home page. */
 router.get("/", (req, res) => {
   const newlyAuthenticated = req.session.newlyAuthenticated;
-    delete req.session.newlyAuthenticated;
-    res.render("index", {
-        title: "BIENVENUE SUR PLACETOPARK!",
-        user: req.user,
-        currentUrl: req.originalUrl,
-        newlyAuthenticated,
+  delete req.session.newlyAuthenticated;
+  res.render("index", {
+    title: "BIENVENUE SUR PLACETOPARK!",
+    user: req.user,
+    currentUrl: req.originalUrl,
+    newlyAuthenticated,
   });
 });
 
