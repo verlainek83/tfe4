@@ -5,24 +5,21 @@ block content
     body(style='background-color:powderblue;')
       center()    
         h2 Enregistrer votre véhicule
-        form(action="/vehicules/create" method="post")
-            label(for="heure_FinInput") Entrer l'immatriculation du véhicule:
-                input.input-box(name='numero_immatriculation' type='text' placeholder='Votre immatriculation' required='')
-            br
-            br
-            .mb-3
-                label.form-label(for="typeVehiculeId") Type de véhicule: 
-                select#typeVehiculeId(name="typeVehiculeId")
-                    each typeVehicule in typeVehicules
-                        option(value=typeVehicule.id) #{typeVehicule.nom} 
-            br   
-                //- .mb-3
-                //- label.form-label(for="typeVehiculeId") Type de véhicule
-                //- select#typeVehiculeId(name="typeVehiculeId")
-                //-     each typeVehicule in typeVehicules
-                //-         option(value=typeVehicule.id) #{typeVehicule.nom}         
-            button.btn.btn-primary(type="submit") Save
-            br
-            br
-            button.btn.btn-primary
-                a.btn.btn-outline-danger(href="/vehicules/create") Cancel
+      div(style='display: flex; justify-content: space-around')
+        div(style='border: 5px ; background-color: lightblue; text-align: left;')    
+            form(action="/vehicules/create" method="post")
+                label(for="heure_FinInput") Entrer l'immatriculation du véhicule:
+                    input.input-box(name='numero_immatriculation' type='text' placeholder='Votre immatriculation' required='')
+                br
+                br
+                .mb-3
+                    label.form-label(for="typeVehiculeId") Type de véhicule: 
+                    select#typeVehiculeId(name="typeVehiculeId")
+                        each typeVehicule in typeVehicules
+                            option(value=typeVehicule.id) #{typeVehicule.nom} 
+                br           
+                button.btn.btn-primary(type="submit") Save
+                br
+                br
+                button.btn.btn-primary
+                    a.btn.btn-outline-danger(href="/vehicules/create") Cancel

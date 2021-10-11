@@ -10,7 +10,8 @@ block content
       p Enregistrez votre parking sur Placetopark.
       p La location de parking zéro contraintes ! 😍
       
-      
+    div(style='display: flex; justify-content: space-around')
+      div(style='border: 5px ; background-color: lightblue; text-align: left;')
         form#form(action="/adresses/create" method="post")
           .mb-3
             label.form-label(for="nomInput") Entrez le nom de la rue:

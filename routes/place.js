@@ -58,7 +58,7 @@ router.get("/", async (req, res, next) => {
       const place = await Place.findByPk(placeId);
       const [parkings] = await Promise.all([Parking.findAll()]);
       //Affichage des détails de la place en tenant compte des parkings
-      res.render("place-details", { title: place.adresse, user, place, parkings });
+      res.render("place-details", { title: place.description, user, place, parkings });
     } catch (error) {
       next(error);
     }

@@ -7,52 +7,60 @@ block content
       i.fa.fa-info-circle(aria-hidden='true')
       |  Bienvenue !
       p Enregistrez votre réservation.
-      p La réseration de parking zéro contraintes ! 😍
-
-      form#form(action="/reservations/create" method="post")
-        .mb-3
-          label.form-label(for="codeReservationInput") code de reservation :
-          input#codeReservationInput.form-control(type="date", name="codeReservation")
-        .mb-3
-          label.form-label(for="dateReservationInput") date de reservation:
-          input#dateReservationInput.form-control(type="date", name="dateReservation")
-        .mb-3
-          label.form-label(for="dateOccupationInput") date d'occupation:
-          input#dateOccupationInput.form-control(type="date", name="dateOccupation")
-        .mb-3
-          label.form-label(for="dateDepartInput") date de départ:
-          input#dateDepartInput.form-control(type="date", name="dateDepart")
-        .mb-3
-          label.form-label(for="heureArriveeInput") heure d'arrivée:
-          input#heureArriveeInput.form-control(type="time", name="heureArrivee")
-        .mb-3
-          label.form-label(for="heureDepartInput") heure de Depart:
-          input#heureDepartInput.form-control(type="time", name="heureDepart")
-        .mb-3
-          //- label
-          //-   input(type='checkbox' checked='' name='validationReservation' disabled='')
-          //-   |  validationReservation
-          label.form-label(for="validationReservationInput") validation non:
-          input#validationReservationInput.form-control(type="checkbox", name="validationReservation" value="false")
-          label.form-label(for="validationReservationInput") validation oui:
-          input#validationReservationInput.form-control(type="checkbox", name="validationReservation" value="true")
-        //- .mb-3
-        //-     label.form-label(for="numeroImmatriculationInput") immatriculation du véhicule
-        //-     input#numeroImmatriculationInput.form-control(type="text", name="numeroImmatriculation", value=vehicule.numeroImmatriculation)
-        .mb-3
-            label.form-label(for="vehiculeId") Immatriculation du véhicule
-            select#vehiculeId(name="vehiculeId")
-                each vehicule in vehicules
-                    option(value=vehicule.id) #{vehicule.numero_immatriculation}
-        .mb-3
-            label.form-label(for="placeId") dimension de la place
-            select#placeId(name="placeId")
-                each place in places
+      p La réservation de parking zéro contraintes ! 😍
+    div(style='display: flex; justify-content: space-around')
+      div(style='border: 5px ; background-color: lightblue; text-align: left;')
+        form#form(action="/reservations/create" method="post")
+          .mb-3
+            label.form-label(for="codeReservationInput") code de reservation :
+            input#codeReservationInput.form-control(type="datetime-local", name="codeReservation" min="2021-10-11T08:30" max="2121-10-30T16:30"
+            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" required)
+          br
+          .mb-3
+            label.form-label(for="dateReservationInput") date de reservation:
+            input#dateReservationInput.form-control(type="date", name="dateReservation")
+          br
+          .mb-3
+            label.form-label(for="dateOccupationInput") date d'occupation:
+            input#dateOccupationInput.form-control(type="date", name="dateOccupation")
+          br
+          .mb-3
+            label.form-label(for="dateDepartInput") date de départ:
+            input#dateDepartInput.form-control(type="date", name="dateDepart")
+          br
+          .mb-3
+            label.form-label(for="heureArriveeInput") heure d'arrivée:
+            input#heureArriveeInput.form-control(type="time", name="heureArrivee")
+          br
+          .mb-3
+            label.form-label(for="heureDepartInput") heure de Depart:
+            input#heureDepartInput.form-control(type="time", name="heureDepart")
+          br
+          .mb-3
+            label.form-label(for="validationReservationInput") validation non:
+            input#validationReservationInput.form-control(type="checkbox", name="validationReservation" value="false")
+            label.form-label(for="validationReservationInput") validation oui:
+            input#validationReservationInput.form-control(type="checkbox", name="validationReservation" value="true")
+          br
+          .mb-3
+              label.form-label(for="vehiculeId") Entrer l'immatricultaion du véhicule
+              select#vehiculeId(name="vehiculeId")
+                  each vehicule in vehicules
+                      option(value=vehicule.id) #{vehicule.numero_immatriculation}
+          br
+          .mb-3
+              label.form-label(for="placeId") dimension de la place
+              select#placeId(name="placeId")
+                  each place in places
                     option(value=place.id) #{place.dimension} 
-        .mb-3 
-          label.form-label(for="userIdInput") Id de l'utilisateur
-          input#userIdInput.form-control(type="text", name="userId", value=user.id)
-        .mb-3
-          button.btn.btn-primary(type="submit") Save
-          | &nbsp;
-          a.btn.btn-outline-danger(href="/index") Cancel
+          br
+          .mb-3 
+            label.form-label(for="userIdInput") Nom de l'utilisateur:
+            input#userIdInput.form-control(type="text", name="userId", value=user.id hidden)
+            input#Input.form-control(type="text", name="", value=user.username)
+          br
+          .mb-3
+            button.btn.btn-primary(type="submit") Save
+            | &nbsp;
+            a.nav-link(href="/parkings" class={active: currentUrl === "/parkings"}) 
+              button.btn.btn-outline-success(type='button' style='color: #009688') Retour

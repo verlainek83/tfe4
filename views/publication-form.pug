@@ -17,7 +17,7 @@ block content
         //- each u in users
           option(value=u.username) #{u.username}
         label.form-label(for="userIdInput") Nom de l'utilisateur:
-        input#userIdInput.form-control(type="text", name="userId", value=user.id)
+        input#userIdInput.form-control(type="text", name="userId", value=user.id hidden)
         input#Input.form-control(type="text", name="", value=user.username)
         br   
             //- .mb-3

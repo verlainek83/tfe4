@@ -73,6 +73,51 @@ router.get("/", async (req, res, next) => {
 //   }
 // });
 
+  //CREATION D'UNE NOUVELLE RESERVATION: GET
+  router.get("/create", async(req, res, next) => {
+    try {
+        const user = req.user;
+        if (!user) {
+            return res.redirect("/login");
+        }
+        if (!user.can("createReservation")) {
+            return next(createError(403));
+        }
+        const vehicules = await Vehicule.findAll();
+        const places = await Place.findAll();
+        const users = await User.findAll();
+        res.render("reservation-form", { title: "Create reservation", user, vehicules, places, users});
+    } catch (error) {
+        next(error);
+    }
+  });
+
+  //CREATION D'UNE NOUVELLE RESERVATION: POST
+  router.post("/create", async(req, res, next) =>
+  {
+    console.log('body', JSON.stringify(req.body))
+    try {
+        const [reservation, created] = await Reservation.findOrCreate({
+            where: { 
+              codeReservation: req.body.codeReservation, 
+              dateReservation: req.body.dateReservation,
+              dateOccupation: req.body.dateOccupation,
+              dateDepart: req.body.dateDepart,
+              heureArrivee: req.body.heureArrivee,
+              heureDepart: req.body.heureDepart,
+              validationReservation: req.body.validationReservation,
+              vehiculeId: req.body. vehiculeId,
+              placeId: req.body.placeId,
+              userId: req.body.userId,
+  
+            },
+        });
+        res.redirect("/reservations");
+    } catch (error) {
+        next(error);
+    }
+  });
+
 router.get("/:id/details", async (req, res, next) => {
   try {
     const user = req.user;
@@ -87,50 +132,6 @@ router.get("/:id/details", async (req, res, next) => {
     res.render("reservation-details", { title: reservation.codeReservation, user, reservation });
   } catch (error) {
     next(error);
-  }
-});
-
-  //CREATION D'UNE NOUVELLE RESERVATION: GET
-router.get("/create", async(req, res, next) => {
-  try {
-      const user = req.user;
-      if (!user) {
-          return res.redirect("/login");
-      }
-      if (!user.can("createReservation")) {
-          return next(createError(403));
-      }
-      const vehicules = await Vehicule.findAll();
-      const places = await Place.findAll();
-      const users = await User.findAll();
-      res.render("reservation-form", { title: "Create reservation", user, vehicules, places, users});
-  } catch (error) {
-      next(error);
-  }
-});
-//CREATION D'UNE NOUVELLE RESERVATION: POST
-router.post("/create", async(req, res, next) =>
-{
-  console.log('body', JSON.stringify(req.body))
-  try {
-      const [reservation, created] = await Reservation.findOrCreate({
-          where: { 
-            codeReservation: req.body.codeReservation, 
-            dateReservation: req.body.dateReservation,
-            dateOccupation: req.body.dateOccupation,
-            dateDepart: req.body.dateDepart,
-            heureArrivee: req.body.heureArrivee,
-            heureDepart: req.body.heureDepart,
-            validationReservation: req.body.validationReservation,
-            vehiculeId: req.body. vehiculeId,
-            placeId: req.body.placeId,
-            userId: req.body.userId,
-
-          },
-      });
-      res.redirect("/reservations");
-  } catch (error) {
-      next(error);
   }
 });
  
@@ -168,6 +169,20 @@ router.post("/create", async(req, res, next) =>
       next(error);
     }
   });
+
+  function getValidation(req, res, next) {
+    req.validationReservation = true;
+    if (req.validationReservation) {
+      res.send("réservation validée.")
+    } else {
+      next()
+    }
+  };
+
+  function validationRes(reservation){
+    const reservation = await Reservation.findByPk(id);
+    const result = Joi.validate(req.body, reservation);
+  }
 
   //affichage des resevations valideés
   router.get("/:id/:validationReservation", async(req, res, next) => {
