@@ -179,10 +179,10 @@ router.get("/:id/details", async (req, res, next) => {
     }
   };
 
-  function validationRes(reservation){
-    const reservation = await Reservation.findByPk(id);
-    const result = Joi.validate(req.body, reservation);
-  }
+  // function validationRes(reservation){
+  //   const reservation = await Reservation.findByPk(id);
+  //   const result = Joi.validate(req.body, reservation);
+  // }
 
   //affichage des resevations valideés
   router.get("/:id/:validationReservation", async(req, res, next) => {

@@ -160,15 +160,16 @@ router.get("/users", async (req, res) => {
 });
 
 //AFFICHAGE DU PROFIL DE L'UTILISATEUR
-// router.get('/account', function(req, res, next) {
+router.get('/account/:adresseId', async (req, res, next) => {
 
-//   //here it is
-//   var user = req.user;
-//   // const roles = Role.findAll();
+  //here it is
+  var user = req.user;
+  var adresseId = req.params.adresseId;
+  const adresses = await Promise.all([ Adresse.findAll()]);  
 
-//   //you probably also want to pass this to your view
-//   res.render('account', { title: 'account', user: user });
-// });
+  //you probably also want to pass this to your view
+  res.render('account', { title: 'account', user: user , adresses});
+});
 
 //details user 
 // router.get("/:username/details", async (req, res, next) => {
