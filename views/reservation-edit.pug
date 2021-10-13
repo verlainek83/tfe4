@@ -3,3 +3,32 @@ extends layout
 block content 
   body(style='background-color:powderblue;')
     center()
+      h1 Mise à jour 
+      form(action="/reservations/"+reservation.id, method="post")
+        .mb-3
+          label.form-label(for="codeReservationInput") code de la reservation:
+          input#codeReservationInput.form-control(type="datetime-local", name="codeReservation", value=reservation.codeReservation readonly)
+        .mb-3
+          label.form-label(for="dateReservationInput") date de reservation:
+          input(type="date", id="dateRes" name="dateReservation" value=reservation.dateReservation readonly)
+        .mb-3
+          label.form-label(for="dateOccupationInput") date d'occupation:
+          input#dateOccupationInput.form-control(type="date", name="dateOccupation" value=reservation.dateOccupation)
+        .mb-3
+          label.form-label(for="dateDepartInput") date de départ:
+          input#dateDepartInput.form-control(type="date", name="dateDepart" value=reservation.dateDepart)
+        .mb-3
+          label.form-label(for="heureArriveeInput") heure d'arrivée:
+          input#heureArriveeInput.form-control(type="time", name="heureArrivee" value=reservation.heureArrivee)
+        .mb-3
+          label.form-label(for="heureDepartInput") heure de Depart:
+          input#heureDepartInput.form-control(type="time", name="heureDepart" value=reservation.heureDepart)
+        .mb-3
+          label.form-label(for="validationReservationInput") validation non:
+          input#validationReservationInput.form-control(type="checkbox", name="validationReservation" value="false")
+          label.form-label(for="validationReservationInput") validation oui:
+          input#validationReservationInput.form-control(type="checkbox", name="validationReservation" value="true")
+        .mb-3
+          button.btn.btn-primary(type="submit") Save
+          | &nbsp;
+          a.btn.btn-outline-danger(href="/reservations/"+reservation.id) Cancel

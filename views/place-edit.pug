@@ -3,3 +3,12 @@ extends layout
 block content 
   body(style='background-color:powderblue;')
     center()
+      h1 Mise à jour 
+      form(action="/trafics/"+trafic.id, method="post")
+        .mb-3
+          label.form-label(for="montantInput") Changer le nom:
+          input#montantInput.form-control(type="number", name="montant", value=tarif.montant )
+        .mb-3
+          button.btn.btn-primary(type="submit") Save
+          | &nbsp;
+          a.btn.btn-outline-danger(href="/tarifs/"+tarif.id) Cancel
