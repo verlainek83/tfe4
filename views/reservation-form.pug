@@ -13,12 +13,15 @@ block content
         form#form(action="/reservations/create" method="post")
           .mb-3
             label.form-label(for="codeReservationInput") code de reservation :
-            input#codeReservationInput.form-control(type="datetime-local", name="codeReservation" min="2021-10-11T08:30" max="2121-10-30T16:30"
-            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" required)
+            input(type="datetime-local", id="codeRes" name="codeReservation" readonly)
+            //- input#codeReservationInput.form-control(type="datetime-local", name="codeReservation" min="2021-10-11T08:30" max="2121-10-30T16:30"
+            //- pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" required)
+            //- input#codeReservationInput.form-control(type="datetime-local", class="codeRes" name="codeReservation" value='{{ Date.now() | datetime-local(' required)
           br
-          .mb-3
-            label.form-label(for="dateReservationInput") date de reservation:
-            input#dateReservationInput.form-control(type="date", name="dateReservation")
+            //- .mb-3
+          label.form-label(for="dateReservationInput") date de reservation:
+          input(type="date", id="dateRes" name="dateReservation" readonly)
+          br
           br
           .mb-3
             label.form-label(for="dateOccupationInput") date d'occupation:
@@ -64,3 +67,10 @@ block content
             | &nbsp;
             a.nav-link(href="/parkings" class={active: currentUrl === "/parkings"}) 
               button.btn.btn-outline-success(type='button' style='color: #009688') Retour
+      
+    script.
+      $('#dateRes').val(new Date().toJSON().slice(0,10));
+      
+      var now = new Date();
+      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+      document.getElementById('codeRes').value = now.toISOString().slice(0,16);

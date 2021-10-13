@@ -96,7 +96,7 @@ router.post("/create", async(req, res, next) =>
           },
       });
       //affichage de la liste des adresses
-      res.redirect("/tarifs/create");
+      res.redirect("/parkings/create");
   } catch (error) {
       next(error);
   }

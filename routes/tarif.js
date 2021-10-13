@@ -6,7 +6,6 @@ const session = require("express-session");
 // importation des differentes modèles à utiliser
 const Trafic = require('../models/trafic');
 const TypeVehicule = require('../models/typeVehicule');
-// const Parking = require('../models/parking');
 const Tarif = require("../models/tarif");
 const Parking = require('../models/parking');
 //FONCTION QUI DONNE LA LISTE DE TOUS LES TARIFS: GET
@@ -24,7 +23,9 @@ router.get("/", async (req, res, next) => {
       return next(createError(403));
     }
     //RECHERCHE DE TOUS LES TARIFS en fonction du montant
-    const tarifs = await Tarif.findAll({order: ["montant"],});
+    const tarifs = await Tarif.findAll({
+      order: ["montant"],
+      include:[Parking, Trafic, TypeVehicule]});
     //Affichage de toutes les tarifs
     res.render("tarifs", {
       title: "Tarif list",
@@ -53,12 +54,14 @@ router.get("/:id/details", async (req, res, next) => {
     //récupraion de l'id du tarif
     const tarifId = req.params.id;
     //recherche du tarif en fonction de la clé primaire
-    const tarif = await Tarif.findByPk(tarifId);
+    const tarif = await Tarif.findByPk(tarifId, {
+        include: [ Trafic, Parking, TypeVehicule]
+    });
     const [trafics] = await Promise.all([ Trafic.findAll()]);
     const [parkings] = await Promise.all([ Parking.findAll()]);
     const [typeVehicules] = await Promise.all([ TypeVehicule.findAll()]);
     //Affichage des détails du tarif
-    res.render("tarif-details", { title: tarif.nom, user, tarif, trafics, typeVehicules });
+    res.render("tarif-details", { title: tarif.nom, user, tarif, trafics, parkings, typeVehicules });
   } catch (error) {
     next(error);
   }

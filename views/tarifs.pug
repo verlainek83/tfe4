@@ -49,12 +49,20 @@ block content
   table.table
     thead
       tr
-      th(scope="col") montant
+      th(scope="col") ID du Parking
+      th(scopa="col") Nombre de places dans le Parking
+      th(scope="col") Type de véhicules
+      th(scope="col") montant (€/min)
+      th(scope="col") Trafic
       th(scope="col") &nbsp;
     tbody
       each tarif in tarifs
         tr
-          td= tarif.montant
+          td= tarif.parkingId
+          td= tarif.parking.nombrePlaces
+          td= tarif.typeVehicule.nom
+          td #{tarif.montant} 
+          td= tarif.trafic.nom
           td
             a.btn.btn-sm.btn-outline-primary(href=`${tarif.url}/details`, data-toggle="tooltip", title="View details")
               svg(width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg")

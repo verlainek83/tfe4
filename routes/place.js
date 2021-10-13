@@ -55,10 +55,12 @@ router.get("/", async (req, res, next) => {
       //récupraion de l'id de la place
       const placeId = req.params.id;
       //recherche de la place en fonction de la clé primaire
-      const place = await Place.findByPk(placeId);
+      const place = await Place.findByPk(placeId, 
+          {include:[ Parking, TypeVehicule]});
       const [parkings] = await Promise.all([Parking.findAll()]);
+      const [typeVehicules] = await Promise.all([TypeVehicule.findAll()]);
       //Affichage des détails de la place en tenant compte des parkings
-      res.render("place-details", { title: place.description, user, place, parkings });
+      res.render("place-details", { title: "Détails de la place", user, place, parkings, typeVehicules });
     } catch (error) {
       next(error);
     }
@@ -91,6 +93,8 @@ router.post("/create", async(req, res, next) =>
 {
   console.log('body', JSON.stringify(req.body))
   try {
+      n = req.body.parkingId;
+      for (let index = 0; index < n; index++) {
     //retrouver une place par la description et la dimension
       const [place, created] = await Place.findOrCreate({
           where: { 
@@ -99,8 +103,9 @@ router.post("/create", async(req, res, next) =>
              parkingId: req.body.parkingId,   
           },
       });
+    }
       //affichage de la liste des places
-      res.redirect("/publications/create");
+      res.redirect("/tarifs/create");
   } catch (error) {
       next(error);
   }

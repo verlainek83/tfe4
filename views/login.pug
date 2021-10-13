@@ -34,7 +34,7 @@ block content
             input.input-box(type='email' name='usermail' id='' placeholder='Votre email' required='')
             input.input-box(type='text' name='nom' placeholder='Votre Nom' required='')
             input.input-box(type='text' name='prenom' placeholder='Votre Prénom' required='')
-            input.input-box(type='text' name='telephone' placeholder='Votre Telephone' required='')
+            input.input-box(type='text' name='telephone' placeholder="Tél: 0456-451-678" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" required='')
             label.form-label(for="roleName") Client ou propriétaire: 
               select#roleName(name="roleName")
                 option(value='') Sélectionner un role

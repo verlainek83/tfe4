@@ -1,5 +1,27 @@
-extends layout 
+extends layout
 
-block content 
+block content
   body(style='background-color:powderblue;')
     center()
+      h1(style='text-transform: uppercase;') Détails du parking
+      p 
+        i Nombre de places dans le parking: 
+        b(style='color: #009688') #{tarif.parkingId}
+      p 
+        i Adresse:  
+        b(style='color: #009688') #{tarif.parking.nombrePlaces}
+      p 
+        i Propriétaire du parking: 
+        b(style='color: #009688') #{tarif.typeVehicule.nom} 
+      p 
+        i Téléphone du propriétaire: 
+        b(style='color: #009688') #{parking.user.telephone}
+    
+      a.nav-link(href="/vehicules/create" class={active: currentUrl === "/vehicules/create/new"}) 
+        button.btn.btn-outline-success(type='button' style='color: #009688') Faire une réservation?
+      p OU
+      a.nav-link(href="/locations" class={active: currentUrl === "/locations"}) 
+        button.btn.btn-outline-success(type='button' style='color: #009688') Faire une location?
+      p OU
+      a.nav-link(href="/parkings" class={active: currentUrl === "/parkings"}) 
+        button.btn.btn-outline-success(type='button' style='color: #009688') Retour

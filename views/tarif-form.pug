@@ -10,7 +10,7 @@ block content
 
     
       div(style='display: flex; justify-content: space-around')
-        div(style='border: 5px outset red; background-color: lightblue; text-align: left;')
+        div(style='border: 5px; background-color: lightblue; text-align: left;')
           p Disponibilité: 
             i   
               b tout le temps  24h/24
@@ -18,11 +18,13 @@ block content
             b les locations au mois (30 jours de préavis)
           p J'accepte 
             b les locations ponctuelles
-        div(style='border: 5px outset red; background-color: lightblue; text-align: left;')
+        div(style='border: 5px ; background-color: lightblue; text-align: left;')
           form#form(action="/tarifs/create" method="post")
             .mb-3
               label.form-label(for="montantInput") Entrez le tarif de la place (€)/min:
-              input#montantInput.form-control(type="text", name="montant") 
+              input#montantInput.form-control(type="number" inputmode="decimal" name="montant", step=0.01) 
+
+              //- input#montantInput.form-control(type="number" inputmode="decimal" name="montant", step=0.01) 
             br
             .mb-3
               label.form-label(for="typeVehiculeIdSelect") typeVehicule:

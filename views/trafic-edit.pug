@@ -3,3 +3,12 @@ extends layout
 block content 
   body(style='background-color:powderblue;')
     center()
+      h1 Mise à jour du véhicule
+      form(action="/typeVehicules/"+typeVehicule.id, method="post")
+        .mb-3
+          label.form-label(for="nomInput") Modifier le type:
+          input#nomInput.form-control(type="text", name="nom", value=typeVehicule.nom )
+        .mb-3
+          button.btn.btn-primary(type="submit") Save
+          | &nbsp;
+          a.btn.btn-outline-danger(href="/typeVehicules/"+typeVehicule.id) Cancel
