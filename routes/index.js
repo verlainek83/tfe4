@@ -7,6 +7,7 @@ const {User, Role} = require("../models/User");
 const Adresse = require("../models/adresse");
 const { Op } = require("sequelize");
 const createError = require('http-errors');
+const { check } = require("express-validator");
 
 const saltRounds = 10;
 
@@ -74,7 +75,13 @@ router.get("/signup", async (req, res) => {
 });
 
 //CREATION D'UN NOUVEAU UTILISATEUR: POST
-router.post("/signup", (req, res, next) => {
+router.post("/signup", [
+  check('username').isLength({ min: 4 }),
+  check('usermail').isEmail(),
+  check('nom').isLength({ min: 3 }),
+  check('prenom').isLength({ min: 3 }),
+  check('telephone').isMobilePhone()
+],(req, res, next) => {
   // vérifier si les deux mots de passe sont identiques
   passport.authenticate("local", async (err1, user, info) => {
     if (err1) {
@@ -281,6 +288,30 @@ router.get("/:username/details", async (req, res, next) => {
   }catch (error) {
     next(error)}
 });
+
+//autorisation client uniquement
+function clientOnly(req, res){
+  var user = req.session.passport.user;
+  if(user && req.role==='client') return next();
+  res.redirect(303, '/unauthorized');
+  }
+
+//autorisation propriétaire uniquement
+function proprietaireOnly(req, res, next){
+  var user = req.session.passport.user;
+  if(user && req.role==='proprietaire') return next();
+  next('route');
+  }
+
+//proprietaire et ses parkings
+router.get('/mesParkings', proprietaireOnly, function(req, res){
+  res.render('mesParkings');
+  });
+
+//client et ses reservations
+app.get('/mesReservations', clientOnly, function(req, res){
+  res.render('mesReservations');
+  });
 
 //Deconnexion
 router.get("/logout", (req, res, next) => {

@@ -101,6 +101,49 @@ router.post("/create", async(req, res, next) =>
       next(error);
   }
 });
+
+//CREATION D'UNE NOUVELLE ADRESSE: GET
+router.get("/createlocation", async(req, res, next) => {
+  try {
+    //récupération du user
+      const user = req.user;
+      //vérification s'il y a un utilisateur connecté, sinon renvoie a la page de connection
+      if (!user) {
+          return res.redirect("/login");
+      }
+    //vérification si l'utilisateur a le droit de créer des adresses, 
+    //si ne n'est pas le cas alors affichage de l'erreur 403
+      if (!user.can("createAdresse")) {
+          return next(createError(403));
+      }
+      const communes = await Commune.findAll();
+      //Affichage du formulaire de création d'une nouvelle adresse
+      res.render("adresse-form", { title: "Create Adresse", user, communes });
+  } catch (error) {
+      next(error);
+  }
+});
+
+//CREATION D'UNE NOUVELLE Adresse: POST
+router.post("/createlocation", async(req, res, next) =>
+{
+  console.log('body', JSON.stringify(req.body))
+  try {
+      //retrouver une adresse par le nom et le numero 
+      const [adresse, created] = await Adresse.findOrCreate({
+          where: { 
+            nom: req.body.nom,
+            numero: req.body.numero,
+            communeId: req.body.communeId,
+          },
+      });
+      //affichage de la liste des adresses
+      res.redirect("/parkings/create");
+  } catch (error) {
+      next(error);
+  }
+});
+
   //MISE A JOUR DE L'ADRESSE': GET
 router.get("/:id", async (req, res, next) => {
     try {

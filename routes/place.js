@@ -93,8 +93,8 @@ router.post("/create", async(req, res, next) =>
 {
   console.log('body', JSON.stringify(req.body))
   try {
-      let n = req.body.parkingId;
-      for (let index = 0; index < n; index++) {
+      // let n = req.body.parkingId;
+      // for (let index = 0; index < n; index++) {
     //retrouver une place par la description et la dimension
       const [place, created] = await Place.findOrCreate({
           where: { 
@@ -103,7 +103,7 @@ router.post("/create", async(req, res, next) =>
              parkingId: req.body.parkingId,   
           },
       });
-    }
+    
       //affichage de la liste des places
       res.redirect("/tarifs/create");
   } catch (error) {

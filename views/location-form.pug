@@ -2,78 +2,54 @@ extends layout
 
 block content
 
-  if user
-    .menu-bar
-      ul
-        li
-          a(href="/parkings/create" class={active: currentUrl === "/parkings/create/new"}) 
-            i.fa.fa-save
-            |  Enregistrer son parking
-        li
-          a(href="/locations/create" class={active: currentUrl === "/locations/create/new"}) 
-            i.fa.fa-ticket
-            |  Faire une location
-        li
-          a(href='/reservations')
-            i.fa.fa-ticket
-            |  Faire une réservation
-          .sub-menu-1
-            ul
-              li.hover-me
-                a(href='')
-                | Profil
-                i.fa.fa-angle-right
-                .sub-menu-2
-                  ul
-                    li
-                      a(href='/account') Profil
-                    li
-                      a(href='') Mes reservations
-                    li
-                      a(href='/mesParkings') Mes parkings
-                    li
-                      a(href='') Dashboard
-              li
-                a(href='') Mes reservations
-              li
-                a(href='') Mes parkings
-              li
-                a(href='') Dashboard
-        li
-          a(href='/publications')
-            i.fa.fa-newspaper-o
-            |  Publications
-        li.active
-          a(href='')
-            i.fa.fa-user
-            |  #{user.username}
-          .sub-menu-1
-            ul
-              li
-                a(href='/account') Profil
-              li
-                a(href='') Mes reservations
-              li
-                a(href='') Mes parkings
-              li
-                a(href='') Dashboard
-        li
-          a(href='/logout')
-            i.fa.fa-sign-out
-            |  Se d&eacute;connecter
-
   h1= title
   form(action="/locations/create", method="post")
     .mb-3
       label(for="date_DebutInput") Date de début:
-        input#date_Debut(type='date', name='date_Debut', value='2021-01-02', min='2021-01-01', max='2050-12-31')
+        input(type='date', id="dateRes" name='date_Debut', value='2021-01-02', min='2021-01-01', max='2050-12-31' readonly)
     .mb-3
       label(for="date_FinInput") Date de Fin:
         input#date_Fin(type='date', name='date_Fin', value='2021-01-02', min='2021-01-01', max='2050-12-31')
     .mb-3
+      label(for="heure_ArriveeInput") Heure de Fin:
+        input#heure_Arrivee(type='time', name='heure_Arrivee', value='09:00', min='00:00', max='23:59')
+    br
+    .mb-3
       label(for="heure_FinInput") Heure de Fin:
         input#heure_Fin(type='time', name='heure_Fin', value='09:00', min='00:00', max='23:59')
+    br
+    .mb-3
+      label.form-label(for="validationReservationInput") validation non:
+      input#validationReservationInput.form-control(type="checkbox", name="validationReservation" value="false")
+      label.form-label(for="validationReservationInput") validation oui:
+      input#validationReservationInput.form-control(type="checkbox", name="validationReservation" value="true")
+    br
+    .mb-3
+        label.form-label(for="vehiculeId") Entrer l'immatricultaion du véhicule
+        select#vehiculeId(name="vehiculeId")
+            each vehicule in vehicules
+                option(value=vehicule.id) #{vehicule.numero_immatriculation}
+    br
+    .mb-3
+        label.form-label(for="placeId") dimension de la place
+        select#placeId(name="placeId")
+            each place in places
+              option(value=place.id) #{place.dimension} 
+    br
+    .mb-3 
+      label.form-label(for="userIdInput") Nom de l'utilisateur:
+      input#userIdInput.form-control(type="text", name="userId", value=user.id hidden)
+      input#Input.form-control(type="text", name="", value=user.username)
+    br
     .mb-3
       button.btn.btn-primary(type="submit") Save
       | &nbsp;
-      a.btn.btn-outline-danger(href="/ligneFactures") Cancel
+      a.nav-link(href="/locations" class={active: currentUrl === "/locations"}) 
+        button.btn.btn-outline-success(type='button' style='color: #009688') Retour
+    .mb-3
+      button.btn.btn-primary(type="submit") Save
+      | &nbsp;
+      a.btn.btn-outline-danger(href="/locations") Cancel
+
+  script.
+    $('#dateRes').val(new Date().toJSON().slice(0,10));

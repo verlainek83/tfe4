@@ -95,7 +95,7 @@ router.post("/create", async(req, res, next) =>
           },
       });
       //affichage de la liste des publications
-      res.redirect("/places/create");
+      res.redirect("/places");
   } catch (error) {
       next(error);
   }

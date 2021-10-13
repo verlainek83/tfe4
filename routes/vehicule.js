@@ -100,6 +100,48 @@ router.post("/create", async(req, res, next) =>
       next(error);
   }
 });
+
+//CREATION D'UN NOUVEAU VEHICULE: GET
+router.get("/createLocation", async(req, res, next) => {
+  try {
+    //récuperation du user
+      const user = req.user;
+      //vérification s'il y a un utilisateur connecté, sinon renvoie a la page de connection
+      if (!user) {
+          return res.redirect("/login");
+      }
+      //vérification si l'utilisateur a le droit de créer des vehicules, 
+      //si ne n'est pas le cas alors affichage de l'erreur 403
+      if (!user.can("createVehicule")) {
+          return next(createError(403));
+      }
+      const typeVehicules = await TypeVehicule.findAll();
+      //Affichage du formulaire de création d'une nouvelle vehicule
+      res.render("vehicule-form", { title: "Create vehicule", user, typeVehicules });
+  } catch (error) {
+      next(error);
+  }
+});
+//CREATION D'UN NOUVEAU VEHICULE: POST
+router.post("/createlocation", async(req, res, next) =>
+{
+console.log('body', JSON.stringify(req.body))
+try {
+  //retrouver une vehicule par le numero d'immatriculation
+    const [vehicule, created] = await Vehicule.findOrCreate({
+        where: { 
+          numero_immatriculation: req.body.numero_immatriculation,
+          typeVehiculeId: req.body.typeVehiculeId,
+          // locationId: req.body.locationId,
+        },
+    });
+    //affichage de la liste des vehicules
+    res.redirect("/locations/create");
+} catch (error) {
+    next(error);
+}
+});
+
 //MISE A JOUR DE LA Place: GET
 router.get("/:id", async(req, res, next) => {
   console.log('details')
