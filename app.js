@@ -118,7 +118,8 @@ app.use("/locations", locationRouter);
 app.use("/trafics", traficRouter);
 app.use("/plageHoraires", plageHoraireRouter);
 app.use("/dashboard", dashboardRouter);
-app.use("/mesparkings", indexRouter);
+app.use("/mesParkings", indexRouter);
+// app.use("/mesReservations", indexRouter);
 app.use(function(req, res, next){
   res.locals.user = req.user;
   next();

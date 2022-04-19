@@ -6,39 +6,17 @@ block content
     .menu-bar
       ul
         li
-          a(href="/parkings/create" class={active: currentUrl === "/parkings/create/new"}) 
+          a(href="/adresses/create" class={active: currentUrl === "/adresses/create/new"}) 
             i.fa.fa-save
             |  Enregistrer son parking
         li
-          a(href="/locations/create" class={active: currentUrl === "/locations/create/new"}) 
+          a(href="/tarifs" class={active: currentUrl === "/tarifs"}) 
+            i.fa.fa-ticket
+            |  Faire une reservation
+        li
+           a(href="/reservations" class={active: currentUrl === "/reservations"})
             i.fa.fa-ticket
             |  Faire une location
-        li
-          a(href='/reservations')
-            i.fa.fa-ticket
-            |  Faire une réservation
-          .sub-menu-1
-            ul
-              li.hover-me
-                a(href='')
-                | Profil
-                i.fa.fa-angle-right
-                .sub-menu-2
-                  ul
-                    li
-                      a(href='/account') Profil
-                    li
-                      a(href='') Mes reservations
-                    li
-                      a(href='/mesParkings') Mes parkings
-                    li
-                      a(href='') Dashboard
-              li
-                a(href='') Mes reservations
-              li
-                a(href='') Mes parkings
-              li
-                a(href='') Dashboard
         li
           a(href='/publications')
             i.fa.fa-newspaper-o
@@ -52,9 +30,9 @@ block content
               li
                 a(href='/account') Profil
               li
-                a(href='') Mes reservations
+                a(href='/reservations/:userId/all') Mes reservations
               li
-                a(href='') Mes parkings
+                a(href='parkings/:userId/all') Mes parkings
               li
                 a(href='') Dashboard
         li

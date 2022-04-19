@@ -9,11 +9,11 @@ block content
             i.fa.fa-save
             |  Enregistrer son parking
         li
-          a(href="/parkings" class={active: currentUrl === "/parkings"}) 
+          a(href="/tarifs" class={active: currentUrl === "/tarifs"}) 
             i.fa.fa-ticket
             |  Faire une reservation
         li
-           a(href="/roles" class={active: currentUrl === "/roles"})
+           a(href="/reservations" class={active: currentUrl === "/reservations"})
             i.fa.fa-ticket
             |  Faire une location
         li
@@ -29,9 +29,9 @@ block content
               li
                 a(href='/account') Profil
               li
-                a(href='/users') Mes reservations
+                a(href='/reservations/:userId/all') Mes reservations
               li
-                a(href='') Mes parkings
+                a(href='parkings/:userId/all') Mes parkings
               li
                 a(href='') Dashboard
         li

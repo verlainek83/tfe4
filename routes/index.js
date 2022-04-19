@@ -79,8 +79,7 @@ router.post("/signup", [
   check('username').isLength({ min: 4 }),
   check('usermail').isEmail(),
   check('nom').isLength({ min: 3 }),
-  check('prenom').isLength({ min: 3 }),
-  check('telephone').isMobilePhone()
+  check('prenom').isLength({ min: 3 })
 ],(req, res, next) => {
   // vérifier si les deux mots de passe sont identiques
   passport.authenticate("local", async (err1, user, info) => {
@@ -309,7 +308,7 @@ router.get('/mesParkings', proprietaireOnly, function(req, res){
   });
 
 //client et ses reservations
-app.get('/mesReservations', clientOnly, function(req, res){
+router.get('/reservations/mesReservations', clientOnly, function(req, res){
   res.render('mesReservations');
   });
 

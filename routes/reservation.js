@@ -248,22 +248,28 @@ router.get("/:placeId", async(req, res, next) => {
   });
 
 // reservations par utilisateurs
-router.get("/:userId", async (req, res) => {
-  const user = req.user;
-  const userId = req.params.userId;
-  const reservations = await reservations.findAll({
-    where: { userId: userId},
-    include: User,
-  });
-  const users = await User.findAll();
-
-  res.render("mesReservations", {
-    title: "Role list",
-    user,
-    reservations,
-    users,
-    currentUrl: req.originalUrl,
-  });
+router.get("/:userId/all", async (req, res) => {
+  try {
+    if (!user.can("listReservations")) {
+      return next(createError(403));
+    }
+    const user = req.user;
+    const userId = req.params.userId;
+    const reservations = await reservations.findAll({
+      where: { userId: userId},
+      include:[User, Place, Vehicule]
+    });
+    res.render("mesReservations", {
+      title: "mes reservations",
+      user,
+      reservations,
+      currentUrl: req.originalUrl,
+    });
+    
+  } catch (error) {
+    
+  }
+  
 });
 
 //reservation of client requests
@@ -275,11 +281,11 @@ router.get("/:id/:userId", async (req, res) => {
   const reservationId = req.params.id;
   const reservations = await reservations.findByPk(reservationId, {
     where: { userId: userId},
-    include: User,
+    include:[User, Place, Vehicule]
   });
   const users = await User.findAll();
   // res.send(req.params);
-  res.render("mesReservationsde", {
+  res.render("mesReservations", {
     title: "Role list",
     user,
     reservations,
